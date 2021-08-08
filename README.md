@@ -1,2 +1,2 @@
 # BitmapPlus
-A bitmap plugin for Grasshopper 3d
+A bitmap manipulation plugin for Grasshopper 3d
