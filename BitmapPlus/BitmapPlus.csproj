@@ -1,0 +1,467 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7E3DE2AE-2CA4-48D7-A6BB-1B235F3B952C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BitmapPlus</RootNamespace>
+    <AssemblyName>BitmapPlus</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Accord, Version=3.8.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
+      <HintPath>packages\Accord.3.8.0\lib\net45\Accord.dll</HintPath>
+    </Reference>
+    <Reference Include="Accord.Imaging, Version=3.8.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
+      <HintPath>packages\Accord.Imaging.3.8.0\lib\net45\Accord.Imaging.dll</HintPath>
+    </Reference>
+    <Reference Include="Accord.Math, Version=3.8.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
+      <HintPath>packages\Accord.Math.3.8.0\lib\net45\Accord.Math.dll</HintPath>
+    </Reference>
+    <Reference Include="Accord.Math.Core, Version=3.8.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
+      <HintPath>packages\Accord.Math.3.8.0\lib\net45\Accord.Math.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Accord.Statistics, Version=3.8.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
+      <HintPath>packages\Accord.Statistics.3.8.0\lib\net45\Accord.Statistics.dll</HintPath>
+    </Reference>
+    <Reference Include="CsPotrace">
+      <HintPath>packages\CsPotrace\CsPotrace.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="SoundInTheory.DynamicImage, Version=3.1.1.0, Culture=neutral, PublicKeyToken=fa44558110383067, processorArchitecture=MSIL">
+      <HintPath>packages\DynamicImage.3.1.1\lib\net40\SoundInTheory.DynamicImage.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="RhinoCommon">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Rhino 6\System\rhinocommon.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Grasshopper">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Rhino 6\Plug-ins\Grasshopper\Grasshopper.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="GH_IO">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Rhino 6\Plug-ins\Grasshopper\GH_IO.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>packages\WebActivatorEx.2.0.2\lib\net40\WebActivatorEx.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\DynamicImage.cs" />
+    <Compile Include="BitmapPlusInfo.cs" />
+    <Compile Include="Classes\Filters\Adjustments\Brightness.cs" />
+    <Compile Include="Classes\Filters\Adjustments\Contrast.cs" />
+    <Compile Include="Classes\Filters\Adjustments\Gamma.cs" />
+    <Compile Include="Classes\Filters\Adjustments\GrayWorld.cs" />
+    <Compile Include="Classes\Filters\Adjustments\Histogram.cs" />
+    <Compile Include="Classes\Filters\Adjustments\Hue.cs" />
+    <Compile Include="Classes\Filters\Adjustments\Invert.cs" />
+    <Compile Include="Classes\Filters\Adjustments\RGChromacity.cs" />
+    <Compile Include="Classes\Filters\Adjustments\Saturation.cs" />
+    <Compile Include="Classes\Filters\Adjustments\Sepia.cs" />
+    <Compile Include="Classes\Filters\Adjustments\Stretch.cs" />
+    <Compile Include="Classes\Filters\Adjustments\WhitePatch.cs" />
+    <Compile Include="Classes\Filters\Channels\Extract.cs" />
+    <Compile Include="Classes\Filters\Channels\Replace.cs" />
+    <Compile Include="Classes\Filters\Difference\Add.cs" />
+    <Compile Include="Classes\Filters\Difference\Divide.cs" />
+    <Compile Include="Classes\Filters\Difference\Euclidean.cs" />
+    <Compile Include="Classes\Filters\Difference\FlatField.cs" />
+    <Compile Include="Classes\Filters\Difference\Intersect.cs" />
+    <Compile Include="Classes\Filters\Difference\Merge.cs" />
+    <Compile Include="Classes\Filters\Difference\Morph.cs" />
+    <Compile Include="Classes\Filters\Difference\MoveTowards.cs" />
+    <Compile Include="Classes\Filters\Difference\Multiply.cs" />
+    <Compile Include="Classes\Filters\Difference\Simple.cs" />
+    <Compile Include="Classes\Filters\Difference\StereoAnaglyph.cs" />
+    <Compile Include="Classes\Filters\Difference\Subtract.cs" />
+    <Compile Include="Classes\Filters\Dither\Bayer.cs" />
+    <Compile Include="Classes\Filters\Dither\Burkes.cs" />
+    <Compile Include="Classes\Filters\Dither\Carry.cs" />
+    <Compile Include="Classes\Filters\Dither\FloydSteinberg.cs" />
+    <Compile Include="Classes\Filters\Dither\JarvisJudiceNinke.cs" />
+    <Compile Include="Classes\Filters\Dither\Ordered.cs" />
+    <Compile Include="Classes\Filters\Dither\Sierra.cs" />
+    <Compile Include="Classes\Filters\Dither\Stucki.cs" />
+    <Compile Include="Classes\Filters\Edges\Canny.cs" />
+    <Compile Include="Classes\Filters\Edges\Difference.cs" />
+    <Compile Include="Classes\Filters\Edges\Homogeneity.cs" />
+    <Compile Include="Classes\Filters\Edges\Kirsch.cs" />
+    <Compile Include="Classes\Filters\Edges\Robinson.cs" />
+    <Compile Include="Classes\Filters\Edges\Sobel.cs" />
+    <Compile Include="Classes\Filters\Edges\Variance.cs" />
+    <Compile Include="Classes\Filters\Effects\Additive.cs" />
+    <Compile Include="Classes\Filters\Effects\Blur.cs" />
+    <Compile Include="Classes\Filters\Effects\BoxBlur.cs" />
+    <Compile Include="Classes\Filters\Effects\Daube.cs" />
+    <Compile Include="Classes\Filters\Effects\GaussianBlur.cs" />
+    <Compile Include="Classes\Filters\Effects\Jitter.cs" />
+    <Compile Include="Classes\Filters\Effects\Kuwahara.cs" />
+    <Compile Include="Classes\Filters\Effects\Pixellate.cs" />
+    <Compile Include="Classes\Filters\Effects\Posterize.cs" />
+    <Compile Include="Classes\Filters\Effects\Ripple.cs" />
+    <Compile Include="Classes\Filters\Effects\SaltPepper.cs" />
+    <Compile Include="Classes\Filters\Figures\BandsHorizontal.cs" />
+    <Compile Include="Classes\Filters\Figures\BandsVertical.cs" />
+    <Compile Include="Classes\Filters\Figures\BlobsFilter.cs" />
+    <Compile Include="Classes\Filters\Figures\BlobsUnique.cs" />
+    <Compile Include="Classes\Filters\Figures\Closing.cs" />
+    <Compile Include="Classes\Filters\Figures\Dilation.cs" />
+    <Compile Include="Classes\Filters\Figures\DilationBinary.cs" />
+    <Compile Include="Classes\Filters\Figures\Erosion.cs" />
+    <Compile Include="Classes\Filters\Figures\ErosionBinary.cs" />
+    <Compile Include="Classes\Filters\Figures\ErosionWatershed.cs" />
+    <Compile Include="Classes\Filters\Figures\FillHoles.cs" />
+    <Compile Include="Classes\Filters\Figures\Gabor.cs" />
+    <Compile Include="Classes\Filters\Figures\HatBottom.cs" />
+    <Compile Include="Classes\Filters\Figures\HatTop.cs" />
+    <Compile Include="Classes\Filters\Figures\Opening.cs" />
+    <Compile Include="Classes\Filters\Figures\Skeletonization.cs" />
+    <Compile Include="Classes\Filters\Figures\SkeletonizationZhangSuen.cs" />
+    <Compile Include="Classes\Filters\Filter.cs" />
+    <Compile Include="Classes\Filters\Filtering\Colour.cs" />
+    <Compile Include="Classes\Filters\Filtering\Channel.cs" />
+    <Compile Include="Classes\Filters\Filtering\HSL.cs" />
+    <Compile Include="Classes\Filters\Filtering\YCbCr.cs" />
+    <Compile Include="Classes\Filters\Grayscale\GrayscaleBT709.cs" />
+    <Compile Include="Classes\Filters\Grayscale\GrayscaleRMY.cs" />
+    <Compile Include="Classes\Filters\Grayscale\GrayscaleY.cs" />
+    <Compile Include="Classes\Filters\Grayscale\Simple.cs" />
+    <Compile Include="Classes\Filters\Levels\HSL.cs" />
+    <Compile Include="Classes\Filters\Levels\RGB.cs" />
+    <Compile Include="Classes\Filters\Levels\RGB16.cs" />
+    <Compile Include="Classes\Filters\Levels\YCbCr.cs" />
+    <Compile Include="Classes\Filters\Sharpening\Gaussian.cs" />
+    <Compile Include="Classes\Filters\Sharpening\HighBoost.cs" />
+    <Compile Include="Classes\Filters\Sharpening\Simple.cs" />
+    <Compile Include="Classes\Filters\Smoothing\Adaptive.cs" />
+    <Compile Include="Classes\Filters\Smoothing\Bilateral.cs" />
+    <Compile Include="Classes\Filters\Smoothing\Conservative.cs" />
+    <Compile Include="Classes\Filters\Smoothing\Mean.cs" />
+    <Compile Include="Classes\Filters\Smoothing\Median.cs" />
+    <Compile Include="Classes\Filters\Threshold\Bradley.cs" />
+    <Compile Include="Classes\Filters\Threshold\Iterative.cs" />
+    <Compile Include="Classes\Filters\Threshold\Nilback.cs" />
+    <Compile Include="Classes\Filters\Threshold\Otsu.cs" />
+    <Compile Include="Classes\Filters\Threshold\Sauvola.cs" />
+    <Compile Include="Classes\Filters\Threshold\Simple.cs" />
+    <Compile Include="Classes\Filters\Threshold\SIS.cs" />
+    <Compile Include="Classes\Filters\Threshold\WolfJolion.cs" />
+    <Compile Include="Classes\Filters\Transform\Mirror.cs" />
+    <Compile Include="Classes\Filters\Transform\Crop.cs" />
+    <Compile Include="Classes\Filters\Transform\Shrink.cs" />
+    <Compile Include="Classes\Filters\Transform\Rotate.cs" />
+    <Compile Include="Classes\Filters\Transform\Polar.cs" />
+    <Compile Include="Classes\Filters\Transform\Move.cs" />
+    <Compile Include="Classes\Filters\Transform\Resize.cs" />
+    <Compile Include="Classes\Layers\Composition.cs" />
+    <Compile Include="Classes\Image.cs" />
+    <Compile Include="Classes\Layers\Layer.cs" />
+    <Compile Include="Classes\Layers\Modifier.cs" />
+    <Compile Include="Classes\Tracing\Corners.cs" />
+    <Compile Include="Classes\Tracing\Blobs.cs" />
+    <Compile Include="Classes\Tracing\Shapes.cs" />
+    <Compile Include="Components\Analysis\GH_Bmp_BitmapProperties.cs" />
+    <Compile Include="Components\Analysis\GH_Bmp_DeconstructBitmap.cs" />
+    <Compile Include="Components\Analysis\GH_Bmp_EvaluateBitmap.cs" />
+    <Compile Include="Components\Analysis\GH_Bmp_GetPixel.cs" />
+    <Compile Include="Components\Create\GH_Bmp_ConstructBitmap.cs" />
+    <Compile Include="Components\Create\GH_Bmp_CreateCellular.cs" />
+    <Compile Include="Components\Create\GH_Bmp_CreateFractal.cs" />
+    <Compile Include="Components\Create\GH_Bmp_CreateNoise.cs" />
+    <Compile Include="Components\Create\GH_Bmp_ImageToBitmap.cs" />
+    <Compile Include="Components\Edit\GH_Bmp_SwapChannels.cs" />
+    <Compile Include="Components\Files\GH_Bmp_OpenBitmap.cs" />
+    <Compile Include="Components\Files\GH_Bmp_SaveBitmap.cs" />
+    <Compile Include="Components\Filter\GH_Bmp_Adjustment.cs" />
+    <Compile Include="Components\Filter\GH_Bmp_Blob.cs" />
+    <Compile Include="Components\Filter\GH_Bmp_Difference.cs" />
+    <Compile Include="Components\Filter\GH_Bmp_Dithering.cs" />
+    <Compile Include="Components\Filter\GH_Bmp_CannyEdges.cs" />
+    <Compile Include="Components\Filter\GH_Bmp_Edges.cs" />
+    <Compile Include="Components\Filter\GH_Bmp_Effects.cs" />
+    <Compile Include="Components\Filter\GH_Bmp_Extract.cs" />
+    <Compile Include="Components\Filter\GH_Bmp_RepeatFilters.cs" />
+    <Compile Include="Components\Filter\GH_Bmp_Smooth.cs" />
+    <Compile Include="Components\Filter\GH_Bmp_Streak.cs" />
+    <Compile Include="Components\Filter\GH_Bmp_Figure.cs" />
+    <Compile Include="Components\Filter\GH_Bmp_Filter.cs" />
+    <Compile Include="Components\Filter\GH_Bmp_Filtering.cs" />
+    <Compile Include="Components\Filter\GH_Bmp_Grayscale.cs" />
+    <Compile Include="Components\Filter\GH_Bmp_Levels.cs" />
+    <Compile Include="Components\Filter\GH_Bmp_Sharpen.cs" />
+    <Compile Include="Components\Edit\GH_Bmp_Swap2Channels.cs" />
+    <Compile Include="Components\Filter\GH_Bmp_Threshold.cs" />
+    <Compile Include="Components\Layers\GH_Bmp_SetLayer.cs" />
+    <Compile Include="Components\Layers\GH_Bmp_MergeLayers.cs" />
+    <Compile Include="Components\Layers\GH_Bmp_ModifyLayer.cs" />
+    <Compile Include="Components\Layers\GH_Bmp_TransformLayer.cs" />
+    <Compile Include="Components\Transform\GH_Bmp_Crop.cs" />
+    <Compile Include="Components\Transform\GH_Bmp_Mirror.cs" />
+    <Compile Include="Components\Transform\GH_Bmp_Move.cs" />
+    <Compile Include="Components\Transform\GH_Bmp_Polar.cs" />
+    <Compile Include="Components\Transform\GH_Bmp_Resize.cs" />
+    <Compile Include="Components\Transform\GH_Bmp_Rotate.cs" />
+    <Compile Include="Components\Transform\GH_Bmp_Scale.cs" />
+    <Compile Include="Components\Transform\GH_Bmp_Shrink.cs" />
+    <Compile Include="Components\Vectorize\GH_Bmp_GetBlobs.cs" />
+    <Compile Include="Components\Vectorize\GH_Bmp_GetCorners.cs" />
+    <Compile Include="Components\Vectorize\GH_Bmp_GetShapes.cs" />
+    <Compile Include="Components\Vectorize\GH_Bmp_TraceBitmap.cs" />
+    <Compile Include="Components\Visualize\GH_Bmp_PreviewColors.cs" />
+    <Compile Include="Components\Visualize\GH_Bmp_PreviewImage.cs" />
+    <Compile Include="Extensions\BmpExtensions.cs" />
+    <Compile Include="Extensions\FilterExtensions.cs" />
+    <Compile Include="Extensions\GhExtensions.cs" />
+    <Compile Include="Extensions\LayerExtensions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\BitmapTracer.cs" />
+    <Compile Include="Utilities\Constants.cs" />
+    <Compile Include="Utilities\FastNoiseBase.cs" />
+    <Compile Include="Utilities\Noise.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bmp_Threshold.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Resources\Bmp_Tab_Icon16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BitmapPlus_Logo-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BitmapPlus_Logo-200.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BitmapPlus_Logo-300.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bmp_LoadBitmap.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bmp_SaveBitmap.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bmp_BuildBitmap.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bmp_Evaluate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bmp_GetPixel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bmp_ImageToBitmap.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bmp_Colors.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bmp_Preview.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bmp_Deconstruct.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bmp_Trace.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bmp_Noise_Cellular.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bmp_Noise_Fractal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bmp_Noise_Noise.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bmp_Properties.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bmp_AddLayer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bmp_MergeLayers.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bmp_Modify.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bmp_XformLayer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bmp_Xform-Move.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bmp_Xform-Polar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bmp_Xform-Resize_B.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bmp_Xform-Rotate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bmp_Xform-Scale_C.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bmp_Xform-Shrink.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bmp_Xform-Crop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bmp_Xform-Mirror.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bmp_Adjust.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bmp_Blob.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bmp_Difference.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bmp_Dither.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bmp_Edges.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bmp_EdgesCanny.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bmp_Effects.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bmp_Figures.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bmp_Filters.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bmp_Grayscale.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bmp_Iterate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bmp_Levels.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bmp_Sharpen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bmp_Smooth.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bmp_Extract.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bmp_Channels.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bmp_Streak.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bmp_SwapMulti.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bmp_Swap2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bmp_TraceBlobs.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bmp_TraceCorners.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bmp_TraceShapes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bmp_ColorPreview.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PostBuildEvent>Copy "$(TargetPath)" "$(TargetDir)$(ProjectName).gha"
+Erase "$(TargetPath)"</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <FallbackCulture>en-US</FallbackCulture>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <StartProgram>C:\Program Files\Rhino 6\System\Rhino.exe</StartProgram>
+    <StartArguments>
+    </StartArguments>
+    <StartAction>Program</StartAction>
+  </PropertyGroup>
+  <Import Project="packages\Accord.3.8.0\build\Accord.targets" Condition="Exists('packages\Accord.3.8.0\build\Accord.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\Accord.3.8.0\build\Accord.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Accord.3.8.0\build\Accord.targets'))" />
+  </Target>
+</Project>
