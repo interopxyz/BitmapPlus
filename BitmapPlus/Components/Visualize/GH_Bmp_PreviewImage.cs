@@ -21,7 +21,7 @@ namespace BitmapPlus.Components
         /// </summary>
         public GH_Bmp_PreviewImage()
           : base("Prev Image", "PrevImg",
-                "Previews a bitmap",
+                "Previews a bitmap image",
                 Constants.ShortName, "Visualize")
         {
         }

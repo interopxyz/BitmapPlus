@@ -82,7 +82,7 @@ namespace BitmapPlus.Components
             Bitmap bitmap = image.Bmp;
 
             bool save = false;
-            DA.GetData(5, ref save);
+            DA.GetData(4, ref save);
 
             if (!hasPath)
             {

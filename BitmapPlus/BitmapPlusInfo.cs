@@ -54,6 +54,14 @@ namespace BitmapPlus
                 return "interopxyz@gmail.com";
             }
         }
+
+        public override string AssemblyVersion
+        {
+            get
+            {
+                return "1.2.0.0";
+            }
+        }
     }
 
     public class BitmapPlusCategoryIcon : GH_AssemblyPriority
