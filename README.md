@@ -13,9 +13,11 @@ Bitmaps can also be traced into a series of different geometry types including c
 
 [Download Plugin at Food4Rhino](https://www.food4rhino.com/en/app/bitmap)
 
-![definition](https://user-images.githubusercontent.com/25797596/158474370-efc29a78-e9a9-4bc8-8037-5fdcd8d05802.png)
-![definition](https://user-images.githubusercontent.com/25797596/158474375-292435f5-bb42-4f4b-b363-f0ed2de681a1.png)
-![definition](https://user-images.githubusercontent.com/25797596/158474352-c4f6d6dc-27cf-4f5d-9dcc-8f3ab64325ca.png)
+![definition](https://user-images.githubusercontent.com/25797596/159039702-3cf6c90c-bdee-4e42-a12f-5b6313b9b709.png)
+![definition](https://user-images.githubusercontent.com/25797596/159039697-7fd6be28-1b5d-44fe-aed6-8c81f574ff5b.png)
+![definition](https://user-images.githubusercontent.com/25797596/159039699-f9d29504-b555-4b02-aa36-480b25412828.png)
+![definition](https://user-images.githubusercontent.com/25797596/159039701-01accaf1-053b-40d4-b38d-b6a4b006ddcb.png)
+![definition](https://user-images.githubusercontent.com/25797596/159039694-6753fc05-f421-4561-84ea-d1f4012191cd.png)
 
 ## Learn More
 
