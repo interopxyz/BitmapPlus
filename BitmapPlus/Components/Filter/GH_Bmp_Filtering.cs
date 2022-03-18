@@ -66,7 +66,7 @@ namespace BitmapPlus.Components.Filter
         /// </summary>
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
-            pManager.AddGenericParameter("Image", "I", "An Image object", GH_ParamAccess.item);
+            pManager.AddGenericParameter("Image", "I", "An Bitmap Plus Image", GH_ParamAccess.item);
         }
 
         /// <summary>
@@ -106,31 +106,32 @@ namespace BitmapPlus.Components.Filter
             switch ((FilterModes)mode)
             {
                 case FilterModes.Channel:
-                    SetParameter(2, "R", "Red", "[0-1] Unitized adjustment value");
-                    SetParameter(3, "G", "Green", "[0-1] Unitized adjustment value");
-                    SetParameter(4, "B", "Blue", "[0-1] Unitized adjustment value");
+                    SetParameter(2, "R", "Red", "Unitized adjustment value (0-1)");
+                    SetParameter(3, "G", "Green", "Unitized adjustment value (0-1)");
+                    SetParameter(4, "B", "Blue", "Unitized adjustment value (0-1)");
                     image.Filters.Add(new Fi.Channel(color,valA, valB, valC, flip));
                     break;
                 case FilterModes.HSL:
-                    SetParameter(2, "H", "Hue", "[0-1] Unitized adjustment value");
-                    SetParameter(3, "S", "Saturation", "[0-1] Unitized adjustment value");
-                    SetParameter(4, "L", "Luminance", "[0-1] Unitized adjustment value");
+                    SetParameter(2, "H", "Hue", "Unitized adjustment value (0-1)");
+                    SetParameter(3, "S", "Saturation", "Unitized adjustment value (0-1)");
+                    SetParameter(4, "L", "Luminance", "Unitized adjustment value (0-1)");
                     image.Filters.Add(new Fi.Colour(color, valA, valB, valC, flip));
                     break;
                 case FilterModes.RGB:
-                    SetParameter(2, "R", "Red", "[0-1] Unitized adjustment value");
-                    SetParameter(3, "G", "Green", "[0-1] Unitized adjustment value");
-                    SetParameter(4, "B", "Blue", "[0-1] Unitized adjustment value");
+                    SetParameter(2, "R", "Red", "Unitized adjustment value (0-1)");
+                    SetParameter(3, "G", "Green", "Unitized adjustment value (0-1)");
+                    SetParameter(4, "B", "Blue", "Unitized adjustment value (0-1)");
                     image.Filters.Add(new Fi.HSL(color, valA, valB, valC, flip));
                     break;
                 case FilterModes.YCbCr:
-                    SetParameter(2, "Y", "Y", "[0-1] Unitized adjustment value");
-                    SetParameter(3, "Cb", "Cb", "[0-1] Unitized adjustment value");
-                    SetParameter(4, "Cr", "Cr", "[0-1] Unitized adjustment value");
+                    SetParameter(2, "Y", "Y", "Unitized adjustment value (0-1)");
+                    SetParameter(3, "Cb", "Cb", "Unitized adjustment value (0-1)");
+                    SetParameter(4, "Cr", "Cr", "Unitized adjustment value (0-1)");
                     image.Filters.Add(new Fi.YCbCr(color, valA, valB, valC, flip));
                     break;
             }
 
+            fileImage = new Img(image);
             DA.SetData(0, image);
         }
 

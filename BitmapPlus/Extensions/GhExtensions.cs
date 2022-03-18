@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,8 +16,11 @@ namespace BitmapPlus
         public static bool TryGetImage(this IGH_Goo goo, ref Img image)
         {
 
+            string filePath = string.Empty;
+            goo.CastTo<string>(out filePath);
             Bitmap bitmap = null;
             Img img = null;
+
             if (goo.CastTo<Img>(out img))
             {
                 image = new Img(img);
@@ -26,6 +30,15 @@ namespace BitmapPlus
             {
                 image = new Img(bitmap);
                 return true;
+            }
+            else if (File.Exists(filePath))
+            {
+                if(filePath.GetBitmapFromFile(out bitmap))
+                {
+                    image = new Img(bitmap);
+                    return true;
+                }
+                return false;
             }
             return false;
         }
@@ -41,20 +54,10 @@ namespace BitmapPlus
                 switch (extension)
                 {
                     case "png":
-                        hasExtension = true;
-                        break;
                     case "jpg":
-                        hasExtension = true;
-                        break;
                     case "jpeg":
-                        hasExtension = true;
-                        break;
                     case "tif":
-                        hasExtension = true;
-                        break;
                     case "tiff":
-                        hasExtension = true;
-                        break;
                     case "bmp":
                         hasExtension = true;
                         break;
@@ -66,5 +69,6 @@ namespace BitmapPlus
             }
             return name;
         }
+
     }
 }

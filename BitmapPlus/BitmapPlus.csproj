@@ -234,6 +234,7 @@
     <Compile Include="Components\Filter\GH_Bmp_Sharpen.cs" />
     <Compile Include="Components\Edit\GH_Bmp_Swap2Channels.cs" />
     <Compile Include="Components\Filter\GH_Bmp_Threshold.cs" />
+    <Compile Include="Components\GH_Bitmap_Base.cs" />
     <Compile Include="Components\Layers\GH_Bmp_SetLayer.cs" />
     <Compile Include="Components\Layers\GH_Bmp_MergeLayers.cs" />
     <Compile Include="Components\Layers\GH_Bmp_ModifyLayer.cs" />

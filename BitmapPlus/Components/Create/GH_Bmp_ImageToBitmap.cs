@@ -7,14 +7,14 @@ using System.Collections.Generic;
 
 namespace BitmapPlus.Components
 {
-    public class GH_Bmp_ImageToBitmap : GH_Component
+    public class GH_Bmp_ImageToBitmap : GH_Bitmap_Base
     {
         /// <summary>
         /// Initializes a new instance of the GH_Bmp_ImageToBitmap class.
         /// </summary>
         public GH_Bmp_ImageToBitmap()
           : base("Image to Bitmap", "ImgToBmp",
-              "Description",
+              "Converts a Bitmap Plus Image to a System.Drawing.Bitmap",
                 Constants.ShortName, "Create")
         {
         }
@@ -60,6 +60,7 @@ namespace BitmapPlus.Components
 
             image.ApplyFilters();
 
+            fileImage = new Img(image);
             DA.SetData(0, image.Bmp);
         }
 

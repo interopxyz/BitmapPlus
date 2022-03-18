@@ -13,7 +13,7 @@ namespace BitmapPlus.Components
         /// </summary>
         public GH_Bmp_EvaluateBitmap()
           : base("Evaluate Bitmap", "EvalBmp",
-              "Evaluates a bitmap by paramaterized values in the x and y directions and returns the color.",
+              "Evaluates a bitmap by parameterized values in the x and y directions and returns the color.",
               Constants.ShortName, "Analysis")
         {
         }
@@ -31,10 +31,10 @@ namespace BitmapPlus.Components
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddGenericParameter("Image / Bitmap", "I", "An Image or Bitmap", GH_ParamAccess.item);
-            pManager.AddNumberParameter("U Parameter", "U", "A unitized (0-1) parameter in the X direction of the bitmap", GH_ParamAccess.item,0.5);
+            pManager.AddGenericParameter("Image", "I", "A Bitmap Plus Image or Bitmap", GH_ParamAccess.item);
+            pManager.AddNumberParameter("U Parameter", "U", "A unitized parameter in the X direction of the bitmap (0-1)", GH_ParamAccess.item,0.5);
             pManager[1].Optional = true;
-            pManager.AddNumberParameter("V Parameter", "V", "A unitized (0-1) parameter in the Y direction of the bitmap", GH_ParamAccess.item, 0.5);
+            pManager.AddNumberParameter("V Parameter", "V", "A unitized parameter in the Y direction of the bitmap (0-1)", GH_ParamAccess.item, 0.5);
             pManager[2].Optional = true;
         }
 

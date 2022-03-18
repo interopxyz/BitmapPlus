@@ -55,7 +55,7 @@ namespace BitmapPlus.Components.Filter
         /// </summary>
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
-            pManager.AddGenericParameter("Image", "I", "An Image object", GH_ParamAccess.item);
+            pManager.AddGenericParameter("Image", "I", "An Bitmap Plus Image", GH_ParamAccess.item);
         }
 
         /// <summary>
@@ -93,31 +93,32 @@ namespace BitmapPlus.Components.Filter
                     image.Filters.Add(new Fi.Ordered());
                     break;
                 case FilterModes.Burkes:
-                    SetParameter(2, "V", "Threshold", filterName + " Threshold Value [0-1] Unitized adjustment value");
+                    SetParameter(2, "V", "Threshold", filterName + " Threshold Value (0-1) Unitized adjustment value");
                     image.Filters.Add(new Fi.Burkes(numVal));
                     break;
                 case FilterModes.Carry:
-                    SetParameter(2, "V", "Threshold", filterName + " Threshold Value [0-1] Unitized adjustment value");
+                    SetParameter(2, "V", "Threshold", filterName + " Threshold Value (0-1) Unitized adjustment value");
                     image.Filters.Add(new Fi.Carry(numVal));
                     break;
                 case FilterModes.FloydSteinberg:
-                    SetParameter(2, "V", "Threshold", filterName + " Threshold Value [0-1] Unitized adjustment value");
+                    SetParameter(2, "V", "Threshold", filterName + " Threshold Value (0-1) Unitized adjustment value");
                     image.Filters.Add(new Fi.FloydSteinberg(numVal));
                     break;
                 case FilterModes.JarvisJudiceNinke:
-                    SetParameter(2, "V", "Threshold", filterName + " Threshold Value [0-1] Unitized adjustment value");
+                    SetParameter(2, "V", "Threshold", filterName + " Threshold Value (0-1) Unitized adjustment value");
                     image.Filters.Add(new Fi.JarvisJudiceNinke(numVal));
                     break;
                 case FilterModes.Sierra:
-                    SetParameter(2, "V", "Threshold", filterName + " Threshold Value [0-1] Unitized adjustment value");
+                    SetParameter(2, "V", "Threshold", filterName + " Threshold Value (0-1) Unitized adjustment value");
                     image.Filters.Add(new Fi.Sierra(numVal));
                     break;
                 case FilterModes.Stucki:
-                    SetParameter(2, "V", "Threshold", filterName + " Threshold Value [0-1] Unitized adjustment value");
+                    SetParameter(2, "V", "Threshold", filterName + " Threshold Value (0-1) Unitized adjustment value");
                     image.Filters.Add(new Fi.Stucki(numVal));
                     break;
             }
 
+            fileImage = new Img(image);
             DA.SetData(0, image);
         }
 

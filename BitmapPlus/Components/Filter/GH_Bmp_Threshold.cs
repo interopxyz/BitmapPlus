@@ -59,7 +59,7 @@ namespace BitmapPlus.Components.Filter
         /// </summary>
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
-            pManager.AddGenericParameter("Image", "I", "An Image object", GH_ParamAccess.item);
+            pManager.AddGenericParameter("Image", "I", "An Bitmap Plus Image", GH_ParamAccess.item);
         }
 
         /// <summary>
@@ -122,19 +122,20 @@ namespace BitmapPlus.Components.Filter
                     image.Filters.Add(new Fi.Nilback(numValA, numValB, numValC));
                     break;
                 case FilterModes.Sauvola:
-                    SetParameter(2, "R", "R", "Dynamic range");
+                    SetParameter(2, "D", "Range", "Dynamic range");
                     SetParameter(3, "K", "K", "Parameter K");
                     SetParameter(4, "R", "Radius", "Filter convolution radius");
                     image.Filters.Add(new Fi.Sauvola(numValA, numValB, numValC));
                     break;
                 case FilterModes.WolfJolion:
-                    SetParameter(2, "R", "R", "Dynamic range");
+                    SetParameter(2, "D", "Range", "Dynamic range");
                     SetParameter(3, "K", "K", "Parameter K");
                     SetParameter(4, "R", "Radius", "Filter convolution radius");
                     image.Filters.Add(new Fi.WolfJolion(numValA, numValB, numValC));
                     break;
             }
 
+            fileImage = new Img(image);
             DA.SetData(0, image);
         }
 

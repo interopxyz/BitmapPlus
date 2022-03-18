@@ -17,7 +17,7 @@ namespace BitmapPlus.Components.Vectorize
         /// </summary>
         public GH_Bmp_GetCorners()
           : base("Bitmap Corners", "BmpCorners",
-              "Get Corners from a Bitmap Figures" + Properties.Resources.AccordCredit,
+              "Get Corners from Bitmap Figures" + Properties.Resources.AccordCredit,
                 Constants.ShortName, "Vectorize")
         {
         }
@@ -35,7 +35,7 @@ namespace BitmapPlus.Components.Vectorize
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddGenericParameter("Image", "I", "An Image or Bitmap", GH_ParamAccess.item);
+            pManager.AddGenericParameter("Image", "I", "A Bitmap Plus Image or Bitmap", GH_ParamAccess.item);
             pManager.AddIntegerParameter("Mode", "M", "Corner detection mode", GH_ParamAccess.item, 0);
             pManager[1].Optional = true;
             pManager.AddNumberParameter("Threshold", "T", "Harris threshold [0-1]", GH_ParamAccess.item, 0.5);

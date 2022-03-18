@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace BitmapPlus.Components.Layers
 {
-    public class GH_Bmp_SetLayer : GH_Component
+    public class GH_Bmp_SetLayer : GH_Bitmap_Base
     {
         /// <summary>
         /// Initializes a new instance of the GH_Bmp_CreateLayer class.
@@ -17,6 +17,7 @@ namespace BitmapPlus.Components.Layers
               "Applies a layer to an image"+Properties.Resources.DynamicImageCredit,
                 Constants.ShortName, "Layers")
         {
+            Message = ((Layer.BlendModes)0).ToString();
         }
 
         /// <summary>
@@ -32,10 +33,10 @@ namespace BitmapPlus.Components.Layers
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddGenericParameter("Image", "I", "An Image or Bitmap", GH_ParamAccess.item);
+            pManager.AddGenericParameter("Image", "I", "A Bitmap Plus Image or Bitmap", GH_ParamAccess.item);
             pManager.AddIntegerParameter("Blend Mode", "B", "The transparency blend mode.", GH_ParamAccess.item, 0);
             pManager[1].Optional = true;
-            pManager.AddNumberParameter("Opacity", "O", "An opacity value from 0-1", GH_ParamAccess.item, 1.0);
+            pManager.AddNumberParameter("Opacity", "O", "An opacity value [0-1]", GH_ParamAccess.item, 1.0);
             pManager[2].Optional = true;
             pManager.AddGenericParameter("Mask", "M", "An optional Image or Bitmap for an opacity mask", GH_ParamAccess.item);
             pManager[3].Optional = true;
@@ -94,6 +95,9 @@ namespace BitmapPlus.Components.Layers
             layer.Opacity = 100.0 * opacity;
 
             image.Layer = layer;
+            Message = ((Layer.BlendModes)blendMode).ToString();
+
+            fileImage = new Img(image);
             DA.SetData(0, image);
         }
 

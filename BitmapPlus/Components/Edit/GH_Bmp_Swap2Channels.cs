@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace BitmapPlus.Components.Filter
 {
-    public class GH_Bmp_Swap2Channels : GH_Component
+    public class GH_Bmp_Swap2Channels : GH_Bitmap_Base
     {
 
         public enum LimitedChannels { Alpha, Red, Green, Blue }
@@ -35,7 +35,7 @@ namespace BitmapPlus.Components.Filter
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddGenericParameter("Image", "I", "An Image or Bitmap", GH_ParamAccess.item);
+            pManager.AddGenericParameter("Image", "I", "A Bitmap Plus Image or Bitmap", GH_ParamAccess.item);
             pManager.AddIntegerParameter("New", "N", "The new channel to replace the source channel", GH_ParamAccess.item, 6);
             pManager[1].Optional = true;
             pManager.AddIntegerParameter("Original", "O", "The channel to be replaced", GH_ParamAccess.item, 0);
@@ -59,7 +59,7 @@ namespace BitmapPlus.Components.Filter
         /// </summary>
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
-            pManager.AddGenericParameter("Image", "I", "An Image object", GH_ParamAccess.item);
+            pManager.AddGenericParameter("Image", "I", "An Bitmap Plus Image", GH_ParamAccess.item);
         }
 
         /// <summary>
@@ -85,6 +85,7 @@ namespace BitmapPlus.Components.Filter
 
             image.Swap2Channels((Img.Channels)source, (Img.Channels)target);
 
+            fileImage = new Img(image);
             DA.SetData(0, image);
         }
 

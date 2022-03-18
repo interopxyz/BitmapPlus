@@ -14,7 +14,7 @@ namespace BitmapPlus.Components
         /// </summary>
         public GH_Bmp_TraceBitmap()
           : base("Trace Bitmap", "Trace",
-              "Trace a bitmap" + Properties.Resources.PotraceCredit,
+              "Trace a Bitmap" + Properties.Resources.PotraceCredit,
                 Constants.ShortName, "Vectorize")
         {
         }
@@ -32,8 +32,8 @@ namespace BitmapPlus.Components
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddGenericParameter("Image", "I", "An Image or Bitmap", GH_ParamAccess.item);
-            pManager.AddIntegerParameter("Mode", "M", "Set the ", GH_ParamAccess.item, 0);
+            pManager.AddGenericParameter("Image", "I", "A Bitmap Plus Image or Bitmap", GH_ParamAccess.item);
+            pManager.AddIntegerParameter("Mode", "M", "Set the turn mode", GH_ParamAccess.item, 0);
             pManager[1].Optional = true;
             pManager.AddIntegerParameter("Size", "S", "The pixel sample size", GH_ParamAccess.item, 2);
             pManager[2].Optional = true;

@@ -59,7 +59,7 @@ namespace BitmapPlus.Components.Filter
         /// </summary>
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
-            pManager.AddGenericParameter("Image", "I", "An Image object", GH_ParamAccess.item);
+            pManager.AddGenericParameter("Image", "I", "An Bitmap Plus Image", GH_ParamAccess.item);
         }
 
         /// <summary>
@@ -87,7 +87,7 @@ namespace BitmapPlus.Components.Filter
             DA.GetData(3, ref numValB);
 
             double numValC = 1.0;
-            DA.GetData(3, ref numValC);
+            DA.GetData(4, ref numValC);
 
             string filterName = ((FilterModes)mode).ToString();
             Message = filterName;
@@ -122,6 +122,7 @@ namespace BitmapPlus.Components.Filter
                     break;
             }
 
+            fileImage = new Img(image);
             DA.SetData(0, image);
         }
 

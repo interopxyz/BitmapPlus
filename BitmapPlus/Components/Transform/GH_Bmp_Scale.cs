@@ -9,7 +9,7 @@ using Fi = BitmapPlus.Filters.Transform;
 
 namespace BitmapPlus.Components.Transform
 {
-    public class GH_Bmp_Scale : GH_Component
+    public class GH_Bmp_Scale : GH_Bitmap_Base
     {
         /// <summary>
         /// Initializes a new instance of the GH_Bmp_Scale class.
@@ -34,8 +34,8 @@ namespace BitmapPlus.Components.Transform
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddGenericParameter("Image", "I", "An Image or Bitmap", GH_ParamAccess.item);
-            pManager.AddIntegerParameter("Mode", "M", "", GH_ParamAccess.item, 0);
+            pManager.AddGenericParameter("Image", "I", "A Bitmap Plus Image or Bitmap", GH_ParamAccess.item);
+            pManager.AddIntegerParameter("Mode", "M", "Sampling Mode", GH_ParamAccess.item, 0);
             pManager[1].Optional = true;
             pManager.AddNumberParameter("Scale", "S", "", GH_ParamAccess.item, 1.0);
             pManager[2].Optional = true;
@@ -83,6 +83,7 @@ namespace BitmapPlus.Components.Transform
 
             image.Filters.Add(new Fi.Resize((Fi.Resize.Modes)mode,width, height));
 
+            fileImage = new Img(image);
             DA.SetData(0, image);
         }
 

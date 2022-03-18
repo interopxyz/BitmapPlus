@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace BitmapPlus.Components.Create
 {
-    public class GH_Bmp_CreateFractal : GH_Component
+    public class GH_Bmp_CreateFractal : GH_Bitmap_Base
     {
         /// <summary>
         /// Initializes a new instance of the GH_Bmp_CreateFractal class.
@@ -31,7 +31,7 @@ namespace BitmapPlus.Components.Create
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddGenericParameter("Noise", "N", "A Noise object", GH_ParamAccess.item);
+            pManager.AddGenericParameter("Noise", "N", "A Bitmap Plus Noise object", GH_ParamAccess.item);
             pManager[0].Optional = true;
             pManager.AddIntegerParameter("Mode", "M", "The noise fractal mode", GH_ParamAccess.item, 0);
             pManager[1].Optional = true;
@@ -54,7 +54,7 @@ namespace BitmapPlus.Components.Create
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
             pManager.AddGenericParameter("Image", "I", "An Image object", GH_ParamAccess.item);
-            pManager.AddGenericParameter("Noise", "N", "A Noise object for input into the Noise Fractal component", GH_ParamAccess.item);
+            //pManager.AddGenericParameter("Noise", "N", "A Noise object for input into the Noise Fractal component", GH_ParamAccess.item);
         }
 
         /// <summary>
@@ -85,8 +85,9 @@ namespace BitmapPlus.Components.Create
             noise.Lacunarity = lacunity;
             noise.Gain = gain;
 
+            fileImage = new Img(noise.GetCurrent());
             DA.SetData(0, new Img(noise.GetCurrent()));
-            DA.SetData(1, new Noise(noise));
+            //DA.SetData(1, new Noise(noise));
         }
 
         /// <summary>

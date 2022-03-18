@@ -7,13 +7,13 @@ using System.Drawing;
 
 namespace BitmapPlus.Components.Layers
 {
-    public class GH_Bmp_MergeLayers : GH_Component
+    public class GH_Bmp_MergeLayers : GH_Bitmap_Base
     {
         /// <summary>
         /// Initializes a new instance of the GH_Bmp_MergeLayers class.
         /// </summary>
         public GH_Bmp_MergeLayers()
-          : base("Merge Images", "MergeImages",
+          : base("Merge Images", "MergeImgs",
               "Merge Images into a single image." + Environment.NewLine + "Input can be a list of Bitmaps, Images, or Images with Layers assigned" + Properties.Resources.DynamicImageCredit,
                 Constants.ShortName, "Layers")
         {
@@ -32,7 +32,7 @@ namespace BitmapPlus.Components.Layers
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddGenericParameter("Images", "I", "An Images or Bitmaps", GH_ParamAccess.list);
+            pManager.AddGenericParameter("Image", "I", "A Bitmap Plus Image or Bitmap", GH_ParamAccess.list);
             pManager.AddColourParameter("Background Color", "C", "The background color of the image", GH_ParamAccess.item, Color.Transparent);
             pManager[1].Optional = true;
         }
@@ -84,6 +84,7 @@ namespace BitmapPlus.Components.Layers
 
             Img img = composition.GetImage();
 
+            fileImage = new Img(img);
             DA.SetData(0, img);
         }
 

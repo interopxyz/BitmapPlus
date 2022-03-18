@@ -10,7 +10,7 @@ using Fs = BitmapPlus.Filters.Smoothing;
 
 namespace BitmapPlus.Components.Filter
 {
-    public class GH_Bmp_Sharpen : GH_Component
+    public class GH_Bmp_Sharpen : GH_Bitmap_Base
     {
         private enum FilterModes { Gaussian, HighBoost, Mean, Simple }
 
@@ -58,7 +58,7 @@ namespace BitmapPlus.Components.Filter
         /// </summary>
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
-            pManager.AddGenericParameter("Image", "I", "An Image object", GH_ParamAccess.item);
+            pManager.AddGenericParameter("Image", "I", "An Bitmap Plus Image", GH_ParamAccess.item);
         }
 
         /// <summary>
@@ -104,6 +104,7 @@ namespace BitmapPlus.Components.Filter
                     break;
             }
 
+            fileImage = new Img(image);
             DA.SetData(0, image);
         }
 

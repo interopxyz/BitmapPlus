@@ -65,7 +65,7 @@ namespace BitmapPlus.Components.Filter
         /// </summary>
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
-            pManager.AddGenericParameter("Image", "I", "An Image object", GH_ParamAccess.item);
+            pManager.AddGenericParameter("Image", "I", "An Bitmap Plus Image", GH_ParamAccess.item);
         }
 
         /// <summary>
@@ -110,35 +110,36 @@ namespace BitmapPlus.Components.Filter
             switch ((FilterModes)mode)
             {
                 case FilterModes.HSL:
-                    SetParameter(2, "Si", "Saturation In", "Domain [0,1]");
-                    SetParameter(3, "So", "Saturation Out", "Domain [0,1]");
-                    SetParameter(4, "Li", "Luminance In", "Domain [0,1]");
-                    SetParameter(5, "Lo", "Luminance Out", "Domain [0,1]");
+                    SetParameter(2, "Si", "Saturation In", "Unitized Domain (0,1)");
+                    SetParameter(3, "So", "Saturation Out", "Unitized Domain (0,1)");
+                    SetParameter(4, "Li", "Luminance In", "Unitized Domain (0,1)");
+                    SetParameter(5, "Lo", "Luminance Out", "Unitized Domain (0,1)");
                     SetParameter(6, "-", "Not Used", "Parameter not used by this filter");
                     SetParameter(7, "-", "Not Used", "Parameter not used by this filter");
-                    image.Filters.Add(new Fi.HSL(numValA, numValB, numValC, numValD));
+                    image.Filters.Add(new Fi.HSL(numValC, numValD, numValA, numValB));
                     break;
                 case FilterModes.RGB:
-                    SetParameter(2, "Ri", "Red In", "Domain [0,1]");
-                    SetParameter(3, "Ro", "Red Out", "Domain [0,1]");
-                    SetParameter(4, "Gi", "Green In", "Domain [0,1]");
-                    SetParameter(5, "Go", "Green Out", "Domain [0,1]");
-                    SetParameter(6, "Bi", "Blue In", "Domain [0,1]");
-                    SetParameter(7, "Bo", "Blue Out", "Domain [0,1]");
+                    SetParameter(2, "Ri", "Red In", "Unitized Domain (0,1)");
+                    SetParameter(3, "Ro", "Red Out", "Unitized Domain (0,1)");
+                    SetParameter(4, "Gi", "Green In", "Unitized Domain (0,1)");
+                    SetParameter(5, "Go", "Green Out", "Unitized Domain (0,1)");
+                    SetParameter(6, "Bi", "Blue In", "Unitized Domain (0,1)");
+                    SetParameter(7, "Bo", "Blue Out", "Unitized Domain (0,1)");
                     image.Filters.Add(new Fi.RGB(numValA, numValB, numValC, numValD, numValE, numValF));
                     break;
                 case FilterModes.YCbCr:
-                    SetParameter(2, "Ri", "Red In", "Domain [0,1]");
-                    SetParameter(3, "Ro", "Red Out", "Domain [0,1]");
-                    SetParameter(4, "Yi", "Y In", "Domain [0,1]");
-                    SetParameter(5, "Yo", "Y Out", "Domain [0,1]");
-                    SetParameter(6, "Bi", "Blue In", "Domain [0,1]");
-                    SetParameter(7, "Bo", "Blue Out", "Domain [0,1]");
+                    SetParameter(2, "Ri", "Red In", "Unitized Domain (0,1)");
+                    SetParameter(3, "Ro", "Red Out", "Unitized Domain (0,1)");
+                    SetParameter(4, "Yi", "Luma In", "Unitized Domain (0,1)");
+                    SetParameter(5, "Yo", "Luma Out", "Unitized Domain (0,1)");
+                    SetParameter(6, "Bi", "Blue In", "Unitized Domain (0,1)");
+                    SetParameter(7, "Bo", "Blue Out", "Unitized Domain (0,1)");
                     image.Filters.Add(new Fi.YCbCr(numValC, numValD, numValE, numValF, numValA, numValB));
                     break;
 
             }
 
+            fileImage = new Img(image);
             DA.SetData(0, image);
         }
 

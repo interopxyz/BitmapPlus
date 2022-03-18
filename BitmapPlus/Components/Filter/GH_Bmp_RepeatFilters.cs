@@ -6,14 +6,14 @@ using System.Collections.Generic;
 
 namespace BitmapPlus.Components.Filter
 {
-    public class GH_Bmp_RepeatFilters : GH_Component
+    public class GH_Bmp_RepeatFilters : GH_Bitmap_Base
     {
         /// <summary>
         /// Initializes a new instance of the GH_Bmp_RepeatFilters class.
         /// </summary>
         public GH_Bmp_RepeatFilters()
           : base("Iterate Filter", "Iterate",
-              "Iteratively repeat filters application to a bitmap" + Properties.Resources.AccordCredit,
+              "Iteratively apply filters to a bitmap" + Properties.Resources.AccordCredit,
                 Constants.ShortName, "Filter")
         {
         }
@@ -41,7 +41,7 @@ namespace BitmapPlus.Components.Filter
         /// </summary>
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
-            pManager.AddGenericParameter("Image", "I", "An Image object", GH_ParamAccess.item);
+            pManager.AddGenericParameter("Image", "I", "An Bitmap Plus Image", GH_ParamAccess.item);
         }
 
         /// <summary>
@@ -64,6 +64,7 @@ namespace BitmapPlus.Components.Filter
             if (iteration < 0) iteration = 0;
             image.FilterIterations = iteration;
 
+            fileImage = new Img(image);
             DA.SetData(0, image);
         }
 

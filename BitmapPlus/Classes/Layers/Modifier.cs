@@ -184,7 +184,7 @@ namespace BitmapPlus
             Df.ColorKeyFilter filter = new Df.ColorKeyFilter();
             filter.ColorTolerance = (byte)Value;
             filter.Color = Color.ToLayerColor();
-
+            
             filter.Enabled = true;
             return filter;
         }

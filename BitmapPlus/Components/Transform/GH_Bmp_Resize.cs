@@ -9,7 +9,7 @@ using Fi = BitmapPlus.Filters.Transform;
 
 namespace BitmapPlus.Components.Transform
 {
-    public class GH_Bmp_Resize : GH_Component
+    public class GH_Bmp_Resize : GH_Bitmap_Base
     {
         /// <summary>
         /// Initializes a new instance of the GH_Bmp_Resize class.
@@ -34,12 +34,12 @@ namespace BitmapPlus.Components.Transform
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddGenericParameter("Image", "I", "An Image or Bitmap", GH_ParamAccess.item);
-            pManager.AddIntegerParameter("Mode", "M", "", GH_ParamAccess.item, 0);
+            pManager.AddGenericParameter("Image", "I", "A Bitmap Plus Image or Bitmap", GH_ParamAccess.item);
+            pManager.AddIntegerParameter("Mode", "M", "Sampling Mode", GH_ParamAccess.item, 0);
             pManager[1].Optional = true;
-            pManager.AddIntegerParameter("Width", "W", "", GH_ParamAccess.item, 100);
+            pManager.AddIntegerParameter("Width", "W", "The new image width", GH_ParamAccess.item, 100);
             pManager[2].Optional = true;
-            pManager.AddIntegerParameter("Height", "H", "", GH_ParamAccess.item, 100);
+            pManager.AddIntegerParameter("Height", "H", "The new image height", GH_ParamAccess.item, 100);
             pManager[3].Optional = true;
 
             Param_Integer param = (Param_Integer)pManager[1];
@@ -85,6 +85,7 @@ namespace BitmapPlus.Components.Transform
 
             image.Filters.Add(new Fi.Resize((Fi.Resize.Modes)mode,width,height));
 
+            fileImage = new Img(image);
             DA.SetData(0, image);
         }
 

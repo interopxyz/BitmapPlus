@@ -8,7 +8,7 @@ using Fi = BitmapPlus.Filters.Transform;
 
 namespace BitmapPlus.Components.Transform
 {
-    public class GH_Bmp_Mirror : GH_Component
+    public class GH_Bmp_Mirror : GH_Bitmap_Base
     {
         /// <summary>
         /// Initializes a new instance of the GH_Bmp_Mirror class.
@@ -33,7 +33,7 @@ namespace BitmapPlus.Components.Transform
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddGenericParameter("Image", "I", "An Image or Bitmap", GH_ParamAccess.item);
+            pManager.AddGenericParameter("Image", "I", "A Bitmap Plus Image or Bitmap", GH_ParamAccess.item);
             pManager.AddBooleanParameter("Flip X", "X", "Flip the image about the X axis", GH_ParamAccess.item, false);
             pManager[1].Optional = false;
             pManager.AddBooleanParameter("Flip Y", "Y", "Flip the image about the Y axis", GH_ParamAccess.item, false);
@@ -71,6 +71,7 @@ namespace BitmapPlus.Components.Transform
 
             image.Filters.Add(new Fi.Mirror(flipX, flipY));
 
+            fileImage = new Img(image);
             DA.SetData(0, image);
         }
 

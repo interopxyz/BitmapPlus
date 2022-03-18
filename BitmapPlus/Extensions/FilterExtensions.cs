@@ -76,6 +76,11 @@ namespace BitmapPlus
             return new Ac.Range((float)input.T0, (float)input.T1);
         }
 
+        public static Ac.Range ToRange(this Rg.Interval input, double min, double max)
+        {
+            return new Ac.Range((float)input.T0.Remap(min,max), (float)input.T1.Remap(min,max));
+        }
+
         public static Ac.IntRange ToIntRange(this Rg.Interval input)
         {
             return new Ac.IntRange((int)input.T0, (int)input.T1);
@@ -89,6 +94,10 @@ namespace BitmapPlus
         private static int RemapInt(this double t, int min, int max)
         {
             return (int)(min + (max - min) * t);
+        }
+        private static double Remap(this double t, double min, double max)
+        {
+            return (min + (max - min) * t);
         }
 
         public static Sd.Rectangle ToDrawingRect(this Rg.Rectangle3d input)

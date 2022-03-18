@@ -11,7 +11,7 @@ namespace BitmapPlus.Components.Filter
 {
     public class GH_Bmp_Difference : GH_Bmp_Filter
     {
-        private enum FilterModes { Add, Subtract, Multiply, Divide, Merge, FlatField, Intersect, Euclidean, Morph, MoveTowards, Simple }
+        private enum FilterModes { Add=0, Subtract=1, Multiply=2, Divide=3, Merge=4, FlatField=5, Intersect=6, Euclidean=7, Morph=8, MoveTowards=9, Simple=10 }
 
         /// <summary>
         /// Initializes a new instance of the GH_Bmp_Difference class.
@@ -56,7 +56,7 @@ namespace BitmapPlus.Components.Filter
         /// </summary>
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
-            pManager.AddGenericParameter("Image", "I", "An Image object", GH_ParamAccess.item);
+            pManager.AddGenericParameter("Image", "I", "An Bitmap Plus Image", GH_ParamAccess.item);
         }
 
         /// <summary>
@@ -90,6 +90,18 @@ namespace BitmapPlus.Components.Filter
             }
             imageOverlay.Flatten();
             Bitmap overlay = imageOverlay.Bmp;
+
+            if(image.Width!= imageOverlay.Width)
+            {
+                this.AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "Both images must be the same width and height.");
+                return;
+            }
+
+            if (image.Height != imageOverlay.Height)
+            {
+                this.AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "Both images must be the same width and height.");
+                return;
+            }
 
             string filterName = ((FilterModes)mode).ToString();
             Message = filterName;
@@ -125,23 +137,24 @@ namespace BitmapPlus.Components.Filter
                     image.Filters.Add(new Fi.Merge(overlay));
                     break;
                 case FilterModes.Euclidean:
-                    SetParameter(2, "V", "Threshold", filterName + " Threshold Value [0-1] Unitized adjustment value");
+                    SetParameter(2, "V", "Threshold", filterName + " Threshold Value Unitized adjustment value (0-1)");
                     image.Filters.Add(new Fi.Euclidean(overlay, numVal));
                     break;
                 case FilterModes.Morph:
-                    SetParameter(2, "V", "Percent", filterName + " Percent Value [0-1] Unitized adjustment value");
+                    SetParameter(2, "V", "Percent", filterName + " Percent Value Unitized adjustment value (0-1)");
                     image.Filters.Add(new Fi.Morph(overlay, numVal));
                     break;
                 case FilterModes.MoveTowards:
-                    SetParameter(2, "V", "Size", filterName + " Size Value [0-1] Unitized adjustment value");
+                    SetParameter(2, "V", "Size", filterName + " Size Value Unitized adjustment value (0-1)");
                     image.Filters.Add(new Fi.MoveTowards(overlay, numVal));
                     break;
                 case FilterModes.Simple:
-                    SetParameter(2, "V", "Threshold ", filterName + " Threshold Value [0-1] Unitized adjustment value");
+                    SetParameter(2, "V", "Threshold ", filterName + " Threshold Value Unitized adjustment value (0-1)");
                     image.Filters.Add(new Fi.Simple(overlay, numVal));
                     break;
             }
 
+            fileImage = new Img(image);
             DA.SetData(0, image);
         }
 

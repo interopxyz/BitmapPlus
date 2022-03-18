@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace BitmapPlus.Components
 {
-    public class GH_Bmp_CreateCellular : GH_Component
+    public class GH_Bmp_CreateCellular : GH_Bitmap_Base
     {
         /// <summary>
         /// Initializes a new instance of the GH_Bmp_CreateCellular class.
@@ -39,9 +39,9 @@ namespace BitmapPlus.Components
             pManager[2].Optional = true;
             pManager.AddIntegerParameter("Depth", "D", "The sample depth through the field", GH_ParamAccess.item, 1);
             pManager[3].Optional = true;
-            pManager.AddIntegerParameter("Mode", "M", "The cellular boundary mode", GH_ParamAccess.item, 0);
+            pManager.AddIntegerParameter("Boundary Mode", "B", "The cellular boundary mode", GH_ParamAccess.item, 0);
             pManager[4].Optional = true;
-            pManager.AddIntegerParameter("Interpolation", "I", "The output interpolation sample value mode", GH_ParamAccess.item, 0);
+            pManager.AddIntegerParameter("Interpolation Mode", "I", "The output interpolation sample value mode", GH_ParamAccess.item, 0);
             pManager[5].Optional = true;
             pManager.AddNumberParameter("Jitter", "J", "The pseudo randomized displacement of the noise sample points", GH_ParamAccess.item, 0.5);
             pManager[6].Optional = true;
@@ -69,7 +69,7 @@ namespace BitmapPlus.Components
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
             pManager.AddGenericParameter("Image", "I", "An Image object", GH_ParamAccess.item);
-            pManager.AddGenericParameter("Noise", "N", "A Noise object for input into the Noise Fractal component", GH_ParamAccess.item);
+            //pManager.AddGenericParameter("Noise", "N", "A Noise object for input into the Noise Fractal component", GH_ParamAccess.item);
         }
 
         /// <summary>
@@ -109,8 +109,10 @@ namespace BitmapPlus.Components
             noise.Index0 = (int)interval.T0;
             noise.Index1 = (int)interval.T1;
 
-            DA.SetData(0, new Img(noise.GetCellular()));
-            DA.SetData(1, new Noise(noise));
+            Img image = new Img(noise.GetCellular());
+            fileImage = new Img(image);
+            DA.SetData(0, image);
+            //DA.SetData(1, new Noise(noise));
         }
 
         /// <summary>

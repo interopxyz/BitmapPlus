@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace BitmapPlus.Components.Filter
 {
-    public abstract class GH_Bmp_Filter : GH_Component
+    public abstract class GH_Bmp_Filter : GH_Bitmap_Base
     {
         /// <summary>
         /// Initializes a new instance of the GH_Bmp_Filter class.

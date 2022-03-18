@@ -3,6 +3,7 @@ using Grasshopper.Kernel.Parameters;
 using Grasshopper.Kernel.Types;
 using Rhino.Geometry;
 using System;
+using System.Drawing;
 using System.Collections.Generic;
 
 using Fi = BitmapPlus.Filters.Adjustments;
@@ -11,7 +12,7 @@ namespace BitmapPlus.Components.Filter
 {
     public class GH_Bmp_Adjustment : GH_Bmp_Filter
     {
-        private enum FilterModes { Invert, GrayWorld, Stretch, Histogram, WhitePatch, RGChromacity, Sepia, Brightness, Contrast, Gamma, Hue, Saturation }
+        private enum FilterModes { Invert, GrayWorld, Stretch, Histogram, WhitePatch, RGBChromacity, Sepia, Brightness, Contrast, Gamma, Hue, Saturation }
 
         /// <summary>
         /// Initializes a new instance of the GH_Bmp_Adjustment class.
@@ -55,7 +56,7 @@ namespace BitmapPlus.Components.Filter
         /// </summary>
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
-            pManager.AddGenericParameter("Image", "I", "An Image object", GH_ParamAccess.item);
+            pManager.AddGenericParameter("Image", "I", "An Bitmap Plus Image", GH_ParamAccess.item);
         }
 
         /// <summary>
@@ -64,6 +65,7 @@ namespace BitmapPlus.Components.Filter
         /// <param name="DA">The DA object is used to retrieve from inputs and store in outputs.</param>
         protected override void SolveInstance(IGH_DataAccess DA)
         {
+
             IGH_Goo goo = null;
             Img image = null;
             if (!DA.GetData(0, ref goo)) return;
@@ -108,32 +110,33 @@ namespace BitmapPlus.Components.Filter
                     SetParameter(2);
                     image.Filters.Add(new Fi.Sepia());
                     break;
-                case FilterModes.RGChromacity:
+                case FilterModes.RGBChromacity:
                     SetParameter(2);
                     image.Filters.Add(new Fi.RGChromacity());
                     break;
                 case FilterModes.Brightness:
-                    SetParameter(2, "V", "Adjust", filterName + " Adjust Value [0-1] Unitized adjustment value");
+                    SetParameter(2, "V", "Adjust", filterName + " Adjust Value Unitized adjustment value (0-1)");
                     image.Filters.Add(new Fi.Brightness(numVal));
                     break;
                 case FilterModes.Contrast:
-                    SetParameter(2, "V", "Factor", filterName + " Factor Value [0-1] Unitized adjustment value");
+                    SetParameter(2, "V", "Factor", filterName + " Factor Value Unitized adjustment value (0-1)");
                     image.Filters.Add(new Fi.Contrast(numVal));
                     break;
                 case FilterModes.Gamma:
-                    SetParameter(2, "V", "Gamma", filterName + " Gamma Value [0-1] Unitized adjustment value");
+                    SetParameter(2, "V", "Gamma", filterName + " Gamma Value Unitized adjustment value (0-1)");
                     image.Filters.Add(new Fi.Gamma(numVal));
                     break;
                 case FilterModes.Hue:
-                    SetParameter(2, "V", "Hue", filterName + " Hue Value [0-1] Unitized adjustment value");
+                    SetParameter(2, "V", "Hue", filterName + " Hue Value Unitized adjustment value (0-1)");
                     image.Filters.Add(new Fi.Hue(numVal));
                     break;
                 case FilterModes.Saturation:
-                    SetParameter(2, "V", "Adjust", filterName + " Adjust Value [0-1] Unitized adjustment value");
+                    SetParameter(2, "V", "Adjust", filterName + " Adjust Value Unitized adjustment value (0-1)");
                     image.Filters.Add(new Fi.Saturation(numVal));
                     break;
             }
 
+            fileImage = new Img(image);
             DA.SetData(0, image);
         }
 

@@ -31,7 +31,7 @@ namespace BitmapPlus.Components
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddGenericParameter("Image / Bitmap", "I", "An Image or Bitmap", GH_ParamAccess.item);
+            pManager.AddGenericParameter("Image", "I", "A Bitmap Plus Image or Bitmap", GH_ParamAccess.item);
             pManager.AddIntegerParameter("X Location", "X", "The bitmap's column location to sample", GH_ParamAccess.item,0);
             pManager[1].Optional = true;
             pManager.AddIntegerParameter("Y Location", "Y", "The bitmap's row location to sample", GH_ParamAccess.item,0);

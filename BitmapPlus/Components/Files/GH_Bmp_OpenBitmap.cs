@@ -7,7 +7,7 @@ using System.IO;
 
 namespace BitmapPlus.Components
 {
-    public class GH_Bmp_OpenBitmap : GH_Component
+    public class GH_Bmp_OpenBitmap : GH_Bitmap_Base
     {
         /// <summary>
         /// Initializes a new instance of the GH_Bmp_OpenBitmap class.
@@ -72,6 +72,7 @@ namespace BitmapPlus.Components
                 }
 
 
+                fileImage = new Img(bitmap);
                 DA.SetData(0, bitmap);
             }
             else

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace BitmapPlus.Components.Create
 {
-    public class GH_Bmp_CreateNoise : GH_Component
+    public class GH_Bmp_CreateNoise : GH_Bitmap_Base
     {
         /// <summary>
         /// Initializes a new instance of the GH_Bmp_CreateNoise class.
@@ -93,7 +93,7 @@ namespace BitmapPlus.Components.Create
             double frequency = 0.25;
             DA.GetData(6, ref frequency);
 
-
+            Img image = new Img();
             Noise noise = new Noise(seed, width, height, depth);
             noise.InterpolationMode = (Noise.InterpolationModes)interp;
             noise.Frequency = frequency;
@@ -101,21 +101,24 @@ namespace BitmapPlus.Components.Create
             switch (mode)
             {
                 case 1:
-                    DA.SetData(0, new Img(noise.GetPerlin()));
+                    image = new Img(noise.GetPerlin());
                     break;
                 case 2:
-                    DA.SetData(0, new Img(noise.GetCubic()));
+                    image = new Img(noise.GetCubic());
                     break;
                 case 3:
-                    DA.SetData(0, new Img(noise.GetSimplex()));
+                    image = new Img(noise.GetSimplex());
                     break;
                 case 4:
-                    DA.SetData(0, new Img(noise.GetWhiteNoise()));
+                    image = new Img(noise.GetWhiteNoise());
                     break;
                 default:
-                    DA.SetData(0, new Img(noise.GetValue()));
+                    image = new Img(noise.GetValue());
                     break;
             }
+
+            fileImage = new Img(image);
+            DA.SetData(0, image);
             DA.SetData(1, new Noise(noise));
         }
 

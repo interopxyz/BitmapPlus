@@ -7,14 +7,14 @@ using System.Collections.Generic;
 
 namespace BitmapPlus.Components.Edit
 {
-    public class GH_Bmp_SwapChannels : GH_Component
+    public class GH_Bmp_SwapChannels : GH_Bitmap_Base
     {
         /// <summary>
         /// Initializes a new instance of the GH_Bmp_SwapChannels class.
         /// </summary>
         public GH_Bmp_SwapChannels()
-          : base("Swap 2 Channels", "Swap2",
-              "Swap one bitmap channel for another one." + Properties.Resources.AccordCredit,
+          : base("Replace Channels", "Replace",
+              "Replace the Channels of a Bitmap." + Properties.Resources.AccordCredit,
                 Constants.ShortName, "Edit")
         {
         }
@@ -32,7 +32,7 @@ namespace BitmapPlus.Components.Edit
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddGenericParameter("Image", "I", "An Image or Bitmap", GH_ParamAccess.item);
+            pManager.AddGenericParameter("Image", "I", "A Bitmap Plus Image or Bitmap", GH_ParamAccess.item);
             pManager.AddIntegerParameter("Alpha", "A", "Replacement for Alpha channel", GH_ParamAccess.item, 0);
             pManager[1].Optional = true;
             pManager.AddIntegerParameter("Red", "R", "Replacement for Red channel", GH_ParamAccess.item, 1);
@@ -72,7 +72,7 @@ namespace BitmapPlus.Components.Edit
         /// </summary>
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
-            pManager.AddGenericParameter("Image", "I", "An Image object", GH_ParamAccess.item);
+            pManager.AddGenericParameter("Image", "I", "An Bitmap Plus Image", GH_ParamAccess.item);
         }
 
         /// <summary>
@@ -101,6 +101,7 @@ namespace BitmapPlus.Components.Edit
 
             image.SwapChannels((Img.Channels)A, (Img.Channels)R, (Img.Channels)G, (Img.Channels)B);
 
+            fileImage = new Img(image);
             DA.SetData(0, image);
         }
 

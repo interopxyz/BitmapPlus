@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace BitmapPlus.Components.Layers
 {
-    public class GH_Bmp_TransformLayer : GH_Component
+    public class GH_Bmp_TransformLayer : GH_Bitmap_Base
     {
         /// <summary>
         /// Initializes a new instance of the GH_Bmp_TransformLayer class.
@@ -32,10 +32,10 @@ namespace BitmapPlus.Components.Layers
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddGenericParameter("Image", "I", "An Image or Bitmap", GH_ParamAccess.item);
-            pManager.AddVectorParameter("Translation Vector", "V", "The optional vector's [x,y] values will be used to move the layer", GH_ParamAccess.item, new Vector3d());
+            pManager.AddGenericParameter("Image", "I", "A Bitmap Plus Image or Bitmap", GH_ParamAccess.item);
+            pManager.AddVectorParameter("Translation Vector", "V", "Translation vector (x,y only)", GH_ParamAccess.item, new Vector3d());
             pManager[1].Optional = true;
-            pManager.AddIntegerParameter("Angle", "A", "The rotation angle of the Image in the layer", GH_ParamAccess.item, 0);
+            pManager.AddIntegerParameter("Angle", "A", "Rotation angle of the Image in the layer", GH_ParamAccess.item, 0);
             pManager[2].Optional = true;
             pManager.AddIntegerParameter("Width", "W", "A new pixel width of the image", GH_ParamAccess.item, 0);
             pManager[3].Optional = true;
@@ -93,8 +93,8 @@ namespace BitmapPlus.Components.Layers
             int mode = 0;
             if (DA.GetData(5, ref mode)) image.Layer.FittingMode = (Layer.FittingModes)mode;
 
+            fileImage = new Img(image);
             DA.SetData(0, image);
-
         }
 
         /// <summary>

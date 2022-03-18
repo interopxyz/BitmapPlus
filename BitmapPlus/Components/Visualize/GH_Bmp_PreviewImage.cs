@@ -8,12 +8,13 @@ using Grasshopper.Kernel.Attributes;
 using Grasshopper.Kernel.Types;
 using Rhino.Geometry;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace BitmapPlus.Components
 {
-    public class GH_Bmp_PreviewImage : GH_Component
+    public class GH_Bmp_PreviewImage : GH_Bitmap_Base
     {
-        public Sd.Image img = null;
+        public Image preview = null;
         string message = "Nothing here";
 
         /// <summary>
@@ -21,7 +22,7 @@ namespace BitmapPlus.Components
         /// </summary>
         public GH_Bmp_PreviewImage()
           : base("Prev Image", "PrevImg",
-                "Previews a bitmap image",
+                "Previews a bitmap image in canvas",
                 Constants.ShortName, "Visualize")
         {
         }
@@ -36,7 +37,7 @@ namespace BitmapPlus.Components
 
         public override void CreateAttributes()
         {
-            img = Properties.Resources.BitmapPlus_Logo_200;
+            preview = Properties.Resources.BitmapPlus_Logo_200;
             m_attributes = new Attributes_Custom(this);
         }
 
@@ -67,7 +68,7 @@ namespace BitmapPlus.Components
             Img image = null;
             if (!DA.GetData(0, ref goo))
             {
-                img = Properties.Resources.BitmapPlus_Logo_200;
+                preview = Properties.Resources.BitmapPlus_Logo_200;
                 return;
             }
             if (!goo.TryGetImage(ref image))
@@ -76,57 +77,10 @@ namespace BitmapPlus.Components
                 return;
             }
 
-            image.Flatten();
-            img = image.Bmp;
-            message = "(" + img.Width + "x" + img.Height + ") " + img.PixelFormat.ToString();
+            fileImage = new Img(image);
+            preview = image.GetFlatBitmap();
+            message = "(" + preview.Width + "x" + preview.Height + ") " + preview.PixelFormat.ToString();
             UpdateMessage();
-        }
-
-        public override void AppendAdditionalMenuItems(ToolStripDropDown menu)
-        {
-            base.AppendAdditionalMenuItems(menu);
-            Menu_AppendSeparator(menu);
-            Menu_AppendItem(menu, "Save Image", SaveImage, true, false);
-
-        }
-
-        public void SaveImage(Object sender, EventArgs e)
-        {
-
-            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            saveFileDialog1.Filter = "JPEG Image|*.jpg|PNG Image|*.png|BMP Image|*.bmp|TIFF Image|*.tiff";
-            saveFileDialog1.Title = "Save an Image";
-            saveFileDialog1.ShowDialog();
-
-            if (saveFileDialog1.FileName != "")
-            {
-                System.IO.FileStream fs =
-                    (System.IO.FileStream)saveFileDialog1.OpenFile();
-
-                switch (saveFileDialog1.FilterIndex)
-                {
-                    case 1:
-                        img.Save(fs,
-                          System.Drawing.Imaging.ImageFormat.Jpeg);
-                        break;
-                    case 2:
-                        img.Save(fs,
-                          System.Drawing.Imaging.ImageFormat.Png);
-                        break;
-                    case 3:
-                        img.Save(fs,
-                          System.Drawing.Imaging.ImageFormat.Bmp);
-                        break;
-                    case 4:
-                        img.Save(fs,
-                          System.Drawing.Imaging.ImageFormat.Tiff);
-                        break;
-                }
-
-                fs.Close();
-
-                this.ExpireSolution(true);
-            }
         }
 
         private void UpdateMessage()
@@ -164,11 +118,11 @@ namespace BitmapPlus.Components
         protected override void Layout()
         {
             base.Layout();
-            GH_Bmp_PreviewImage comp = Owner as GH_Bmp_PreviewImage;
+            GH_Bmp_PreviewImage comp = Owner as GH_Bmp_PreviewImage; 
 
-            int width = comp.img.Width;
+            int width = comp.preview.Width;
             if (width < 50) width = 50;
-            int height = comp.img.Height;
+            int height = comp.preview.Height;
             if (height < 50) height = 50;
             Sd.Rectangle rec0 = GH_Convert.ToRectangle(Bounds);
 
@@ -207,7 +161,7 @@ namespace BitmapPlus.Components
 
                 Sd.RectangleF textRectangle = ButtonBounds;
 
-                graphics.DrawImage(comp.img, Bounds.X + 2, m_innerBounds.Y - (ButtonBounds.Height - Bounds.Height), comp.img.Width - 4, comp.img.Height - 4);
+                graphics.DrawImage(comp.preview, Bounds.X + 2, m_innerBounds.Y - (ButtonBounds.Height - Bounds.Height), comp.preview.Width - 4, comp.preview.Height - 4);
 
                 format.Dispose();
             }

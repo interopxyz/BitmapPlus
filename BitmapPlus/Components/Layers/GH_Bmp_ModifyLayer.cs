@@ -8,7 +8,7 @@ using System.Drawing;
 
 namespace BitmapPlus.Components.Layers
 {
-    public class GH_Bmp_ModifyLayer : GH_Component
+    public class GH_Bmp_ModifyLayer : GH_Bitmap_Base
     {
         /// <summary>
         /// Initializes a new instance of the GH_Bmp_ModifyLayer class.
@@ -18,6 +18,7 @@ namespace BitmapPlus.Components.Layers
               "Modify a layer" + Properties.Resources.DynamicImageCredit,
                 Constants.ShortName, "Layers")
         {
+            Message = ((Modifier.ModifierModes)0).ToString();
         }
 
         /// <summary>
@@ -33,12 +34,12 @@ namespace BitmapPlus.Components.Layers
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddGenericParameter("Image", "I", "An Image or Bitmap", GH_ParamAccess.item);
+            pManager.AddGenericParameter("Image", "I", "A Bitmap Plus Image or Bitmap", GH_ParamAccess.item);
             pManager.AddIntegerParameter("Mode", "M", "The layer modifier mode ", GH_ParamAccess.item, 0);
             pManager[1].Optional = true;
-            pManager.AddNumberParameter("Value", "V", "The value of the modifier's parameter, when available", GH_ParamAccess.item, 0.0);
+            pManager.AddNumberParameter("Value", "V", "The parameter value for the modifier. Not used in all Modes.", GH_ParamAccess.item, 0.0);
             pManager[2].Optional = true;
-            pManager.AddColourParameter("Color", "C", "Color parameter for select modifiers", GH_ParamAccess.item, Color.Transparent);
+            pManager.AddColourParameter("Color", "C", "Color parameter for the modifier. Not used in all Modes.", GH_ParamAccess.item, Color.Transparent);
             pManager[3].Optional = true;
 
             Param_Integer param = (Param_Integer)pManager[1];
@@ -88,7 +89,9 @@ namespace BitmapPlus.Components.Layers
 
             image.Layer.Modifiers.Add(modifier);
 
+            fileImage = new Img(image);
             DA.SetData(0, image);
+            Message = ((Modifier.ModifierModes)mode).ToString();
         }
 
         /// <summary>

@@ -57,7 +57,7 @@ namespace BitmapPlus.Components.Filter
         /// </summary>
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
-            pManager.AddGenericParameter("Image", "I", "An Image object", GH_ParamAccess.item);
+            pManager.AddGenericParameter("Image", "I", "An Bitmap Plus Image", GH_ParamAccess.item);
         }
 
         /// <summary>
@@ -95,47 +95,48 @@ namespace BitmapPlus.Components.Filter
                     image.Filters.Add(new Fi.Additive());
                     break;
                 case FilterModes.Daube:
-                    SetParameter(2, "S", "Size", filterName + " Size Value. [0-1] Unitized adjustment value");
+                    SetParameter(2, "S", "Size", filterName + " Size Value. Unitized adjustment value (0-1)");
                     SetParameter(3);
                     image.Filters.Add(new Fi.Daube(numValA));
                     break;
                 case FilterModes.SaltPepper:
-                    SetParameter(2, "N", "Noise", filterName + " Noise Value. [0-1] Unitized adjustment value");
+                    SetParameter(2, "N", "Noise", filterName + " Noise Value. Unitized adjustment value (0-1)");
                     SetParameter(3);
                     image.Filters.Add(new Fi.SaltPepper(numValA));
                     break;
                 case FilterModes.Jitter:
-                    SetParameter(2, "R", "Radius", filterName + " Radius Value. [0-1] Unitized adjustment value");
+                    SetParameter(2, "R", "Radius", filterName + " Radius Value. Unitized adjustment value (0-1)");
                     SetParameter(3);
                     image.Filters.Add(new Fi.Jitter(numValA));
                     break;
                 case FilterModes.Kuwahara:
-                    SetParameter(2, "S", "Size", filterName + " Size Value. [0-1] Unitized adjustment value");
+                    SetParameter(2, "S", "Size", filterName + " Size Value. Unitized adjustment value (0-1)");
                     SetParameter(3);
                     image.Filters.Add(new Fi.Kuwahara(numValA));
                     break;
                 case FilterModes.Posterize:
-                    SetParameter(2, "I", "Interval", filterName + " Size Value. [0-1] Unitized adjustment value");
+                    SetParameter(2, "I", "Interval", filterName + " Size Value. Unitized adjustment value (0-1)");
                     SetParameter(3);
                     image.Filters.Add(new Fi.Posterize(numValA));
                     break;
                 case FilterModes.GaussianBlur:
-                    SetParameter(2, "X", "Sigma", filterName + " Sigma Value. [0-1] Unitized adjustment value");
-                    SetParameter(3, "S", "Size", filterName + " Size Value. [0-1] Unitized adjustment value");
+                    SetParameter(2, "X", "Sigma", filterName + " Sigma Value. Unitized adjustment value (0-1)");
+                    SetParameter(3, "S", "Size", filterName + " Size Value. Unitized adjustment value (0-1)");
                     image.Filters.Add(new Fi.GaussianBlur(numValA, numValB));
                     break;
                 case FilterModes.Pixellate:
-                    SetParameter(2, "W", "Width", filterName + " Width Value. [0-1] Unitized adjustment value");
-                    SetParameter(3, "H", "Height", filterName + " Height Value. [0-1] Unitized adjustment value");
+                    SetParameter(2, "W", "Width", filterName + " Width Value. Unitized adjustment value (0-1)");
+                    SetParameter(3, "H", "Height", filterName + " Height Value. Unitized adjustment value (0-1)");
                     image.Filters.Add(new Fi.Pixellate(numValA, numValB));
                     break;
                 case FilterModes.Blur:
-                    SetParameter(2, "D", "Divisor", filterName + " Divisor Value. [0-1] Unitized adjustment value");
-                    SetParameter(3, "T", "Threshold", filterName + " Threshold Value. [0-1] Unitized adjustment value");
+                    SetParameter(2, "D", "Divisor", filterName + " Divisor Value. Unitized adjustment value (0-1)");
+                    SetParameter(3, "T", "Threshold", filterName + " Threshold Value. Unitized adjustment value (0-1)");
                     image.Filters.Add(new Fi.Blur(numValA, numValB));
                     break;
             }
 
+            fileImage = new Img(image);
             DA.SetData(0, image);
         }
 

@@ -6,13 +6,13 @@ using System.Drawing;
 
 namespace BitmapPlus.Components
 {
-    public class GH_Bmp_ConstructBitmap : GH_Component
+    public class GH_Bmp_ConstructBitmap : GH_Bitmap_Base
     {
         /// <summary>
         /// Initializes a new instance of the GH_Bmp_ConstructBitmap class.
         /// </summary>
         public GH_Bmp_ConstructBitmap()
-          : base("Build Bitmap", "Build Bmp",
+          : base("Build Bitmap", "BuildBmp",
               "Build a bitmap from a width, height, and list of colors",
               Constants.ShortName, "Create")
         {
@@ -63,6 +63,7 @@ namespace BitmapPlus.Components
 
             Img image = new Img(colors, width, height);
 
+            fileImage = new Img(image);
             DA.SetData(0, image.Bmp);
         }
 

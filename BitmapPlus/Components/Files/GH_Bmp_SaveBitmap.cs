@@ -9,7 +9,7 @@ using System.IO;
 
 namespace BitmapPlus.Components
 {
-    public class GH_Bmp_SaveBitmap : GH_Component
+    public class GH_Bmp_SaveBitmap : GH_Bitmap_Base
     {
         /// <summary>
         /// Initializes a new instance of the GH_Bmp_SaveImage class.
@@ -80,6 +80,7 @@ namespace BitmapPlus.Components
             if (extension > 3) extension = 3;
 
             Bitmap bitmap = image.Bmp;
+            fileImage = new Img(image);
 
             bool save = false;
             DA.GetData(4, ref save);

@@ -32,7 +32,7 @@ namespace BitmapPlus.Components.Vectorize
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddGenericParameter("Image", "I", "An Image or Bitmap", GH_ParamAccess.item);
+            pManager.AddGenericParameter("Image", "I", "A Bitmap Plus Image or Bitmap", GH_ParamAccess.item);
             pManager.AddIntervalParameter("Width Domain", "W", "The horizontal threshold domain for the filtered blobs", GH_ParamAccess.item, new Interval(5, 100));
             pManager[1].Optional = true;
             pManager.AddIntervalParameter("Height Domain", "H", "The vertical threshold domain for the filtered blobs", GH_ParamAccess.item, new Interval(5, 100));
@@ -49,7 +49,7 @@ namespace BitmapPlus.Components.Vectorize
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
             pManager.AddRectangleParameter("Boundaries", "R", "The rectangular boundary of the blobs", GH_ParamAccess.list);
-            pManager.AddGenericParameter("Bitmap", "B", "The bitmap of the extracted blog corresponding ot the boundary", GH_ParamAccess.list);
+            pManager.AddGenericParameter("Bitmap", "B", "The bitmap of the extracted blob corresponding ot the boundary", GH_ParamAccess.list);
             pManager.AddColourParameter("Colors", "C", "The averaged color of the blob", GH_ParamAccess.list);
             pManager.AddPointParameter("Points", "P", "Blob corner points", GH_ParamAccess.list);
         }

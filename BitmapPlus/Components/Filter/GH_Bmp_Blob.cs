@@ -9,7 +9,7 @@ using Fi = BitmapPlus.Filters.Figures;
 
 namespace BitmapPlus.Components.Filter
 {
-    public class GH_Bmp_Blob : GH_Component
+    public class GH_Bmp_Blob : GH_Bitmap_Base
     {
         /// <summary>
         /// Initializes a new instance of the GH_Bmp_Blob class.
@@ -41,9 +41,9 @@ namespace BitmapPlus.Components.Filter
             pManager[2].Optional = true;
             pManager.AddBooleanParameter("Unique", "U", "If true, each discrete blob is color individually", GH_ParamAccess.item, false);
             pManager[3].Optional = true;
-            pManager.AddBooleanParameter("Blobs", "B", "", GH_ParamAccess.item, false);
+            pManager.AddBooleanParameter("Blobs", "B", "Isolated individual blobs", GH_ParamAccess.item, false);
             pManager[4].Optional = true;
-            pManager.AddBooleanParameter("Coupled", "C", "", GH_ParamAccess.item, false);
+            pManager.AddBooleanParameter("Coupled", "C", "Couple blobs in close proximity", GH_ParamAccess.item, false);
             pManager[5].Optional = true;
         }
 
@@ -52,7 +52,7 @@ namespace BitmapPlus.Components.Filter
         /// </summary>
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
-            pManager.AddGenericParameter("Image", "I", "An Image object", GH_ParamAccess.item);
+            pManager.AddGenericParameter("Image", "I", "An Bitmap Plus Image", GH_ParamAccess.item);
         }
 
         /// <summary>
@@ -94,6 +94,7 @@ namespace BitmapPlus.Components.Filter
                 image.Filters.Add(new Fi.BlobsFilter(numValA, numValB, coupled));
             }
 
+            fileImage = new Img(image);
             DA.SetData(0, image);
         }
 

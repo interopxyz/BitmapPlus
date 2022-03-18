@@ -9,7 +9,7 @@ using Fi = BitmapPlus.Filters.Transform;
 
 namespace BitmapPlus.Components.Transform
 {
-    public class GH_Bmp_Shrink : GH_Component
+    public class GH_Bmp_Shrink : GH_Bitmap_Base
     {
         /// <summary>
         /// Initializes a new instance of the MGH_Bmp_Shrink class.
@@ -34,7 +34,7 @@ namespace BitmapPlus.Components.Transform
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddGenericParameter("Image", "I", "An Image or Bitmap", GH_ParamAccess.item);
+            pManager.AddGenericParameter("Image", "I", "A Bitmap Plus Image or Bitmap", GH_ParamAccess.item);
             pManager.AddColourParameter("Color", "C", "The color to crop out from the boundary of the image.", GH_ParamAccess.item, Color.Black);
             pManager[1].Optional = true;
         }
@@ -67,6 +67,7 @@ namespace BitmapPlus.Components.Transform
 
             image.Filters.Add(new Fi.Shrink(color));
 
+            fileImage = new Img(image);
             DA.SetData(0, image);
         }
 

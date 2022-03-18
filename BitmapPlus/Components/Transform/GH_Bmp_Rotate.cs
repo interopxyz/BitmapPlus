@@ -9,7 +9,7 @@ using Fi = BitmapPlus.Filters.Transform;
 
 namespace BitmapPlus.Components.Transform
 {
-    public class GH_Bmp_Rotate : GH_Component
+    public class GH_Bmp_Rotate : GH_Bitmap_Base
     {
         /// <summary>
         /// Initializes a new instance of the GH_Bmp_Rotate class.
@@ -34,14 +34,14 @@ namespace BitmapPlus.Components.Transform
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddGenericParameter("Image", "I", "An Image or Bitmap", GH_ParamAccess.item);
-            pManager.AddIntegerParameter("Mode", "M", "", GH_ParamAccess.item, 0);
+            pManager.AddGenericParameter("Image", "I", "A Bitmap Plus Image or Bitmap", GH_ParamAccess.item);
+            pManager.AddIntegerParameter("Mode", "M", "Sampling Mode", GH_ParamAccess.item, 0);
             pManager[1].Optional = true;
-            pManager.AddNumberParameter("Angle", "A", "", GH_ParamAccess.item, 0);
+            pManager.AddNumberParameter("Angle", "A", "Rotation Angle", GH_ParamAccess.item, 0);
             pManager[2].Optional = true;
-            pManager.AddBooleanParameter("Keep Original", "K", "", GH_ParamAccess.item, true);
+            pManager.AddBooleanParameter("Keep Original", "K", "If true, keeps the original image size", GH_ParamAccess.item, true);
             pManager[3].Optional = true;
-            pManager.AddColourParameter("Color", "C", "", GH_ParamAccess.item, Color.Transparent);
+            pManager.AddColourParameter("Color", "C", "The background replacement color", GH_ParamAccess.item, Color.Transparent);
             pManager[4].Optional = true;
 
             Param_Integer param = (Param_Integer)pManager[1];
@@ -88,6 +88,7 @@ namespace BitmapPlus.Components.Transform
 
             image.Filters.Add(new Fi.Rotate(color, (Fi.Rotate.Modes)mode,angle, original));
 
+            fileImage = new Img(image);
             DA.SetData(0, image);
         }
 

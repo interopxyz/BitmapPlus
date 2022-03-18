@@ -15,7 +15,7 @@ namespace BitmapPlus
         #region members
         public enum Channels { Alpha =0 , Red=1, Green=2, Blue=3, Hue=4, Saturation=5, Luminance=6 };
 
-        protected Bitmap bitmap = null;
+        protected Bitmap bitmap = new Bitmap(100, 100, PixelFormat.Format32bppArgb);
         public Layer Layer = new Layer();
         public List<Filter> Filters = new List<Filter>();
         public int FilterIterations = 0;
@@ -104,6 +104,14 @@ namespace BitmapPlus
         #endregion
 
         #region methods
+
+        public Bitmap GetFlatBitmap()
+        {
+            Img img = new Img(this);
+            img.Flatten();
+
+            return img.Bmp;
+        }
 
         public void Flatten()
         {
