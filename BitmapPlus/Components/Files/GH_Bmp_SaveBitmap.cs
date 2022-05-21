@@ -57,6 +57,9 @@ namespace BitmapPlus.Components
         /// <param name="DA">The DA object is used to retrieve from inputs and store in outputs.</param>
         protected override void SolveInstance(IGH_DataAccess DA)
         {
+            bool save = false;
+            DA.GetData(4, ref save);
+            if (save) {
             IGH_Goo goo = null;
             Img image = null;
             if (!DA.GetData(0, ref goo)) return;
@@ -82,9 +85,6 @@ namespace BitmapPlus.Components
             Bitmap bitmap = image.Bmp;
             fileImage = new Img(image);
 
-            bool save = false;
-            DA.GetData(4, ref save);
-
             if (!hasPath)
             {
                 if (this.OnPingDocument().FilePath != null)
@@ -97,8 +97,8 @@ namespace BitmapPlus.Components
 
             if (!Directory.Exists(path))
             {
-                this.AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "The provided folder path does not exist. Please verify this is a valid path.");
-                return;
+                    Directory.CreateDirectory(path);
+                this.AddRuntimeMessage(GH_RuntimeMessageLevel.Warning, "The provided folder path does not exist. A new directory has been created.");
             }
 
             string ext = ".png";
@@ -127,6 +127,7 @@ namespace BitmapPlus.Components
                 bitmap.Dispose();
 
                 DA.SetData(0, filepath);
+            }
             }
         }
 
