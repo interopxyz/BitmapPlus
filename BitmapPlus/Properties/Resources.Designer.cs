@@ -6,7 +6,7 @@
 //     Changes to this file may cause incorrect behavior and will be lost if
 //     the code is regenerated.
 // </auto-generated>
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 
 namespace BitmapPlus.Properties {
     using System;
@@ -607,6 +607,16 @@ namespace BitmapPlus.Properties {
         internal static System.Drawing.Bitmap Bmp_XformLayer {
             get {
                 object obj = ResourceManager.GetObject("Bmp_XformLayer", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ConvolutionMatrix_01 {
+            get {
+                object obj = ResourceManager.GetObject("ConvolutionMatrix_01", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

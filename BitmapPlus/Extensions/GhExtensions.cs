@@ -12,6 +12,19 @@ namespace BitmapPlus
     public static class GhExtensions
     {
 
+        public static int[,] ToKernel(this Rhino.Geometry.Matrix input)
+        {
+            int[,] kernal = new int[input.ColumnCount, input.RowCount];
+
+            for(int i = 0; i < input.ColumnCount; i++)
+            {
+                for (int j = 0; j < input.RowCount; j++)
+                {
+                    kernal[i, j] = (int)input[i, j];
+                }
+            }
+            return kernal;
+        }
 
         public static bool TryGetImage(this IGH_Goo goo, ref Img image)
         {

@@ -105,6 +105,7 @@
     <Compile Include="Classes\Filters\Adjustments\WhitePatch.cs" />
     <Compile Include="Classes\Filters\Channels\Extract.cs" />
     <Compile Include="Classes\Filters\Channels\Replace.cs" />
+    <Compile Include="Classes\Filters\Convolutions\Convolution.cs" />
     <Compile Include="Classes\Filters\Difference\Add.cs" />
     <Compile Include="Classes\Filters\Difference\Divide.cs" />
     <Compile Include="Classes\Filters\Difference\Euclidean.cs" />
@@ -239,6 +240,7 @@
     <Compile Include="Components\Layers\GH_Bmp_MergeLayers.cs" />
     <Compile Include="Components\Layers\GH_Bmp_ModifyLayer.cs" />
     <Compile Include="Components\Layers\GH_Bmp_TransformLayer.cs" />
+    <Compile Include="Components\Matrix\GH_ApplyMatrix.cs" />
     <Compile Include="Components\Transform\GH_Bmp_Crop.cs" />
     <Compile Include="Components\Transform\GH_Bmp_Mirror.cs" />
     <Compile Include="Components\Transform\GH_Bmp_Move.cs" />
@@ -436,6 +438,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Bmp_ColorPreview.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ConvolutionMatrix-01.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

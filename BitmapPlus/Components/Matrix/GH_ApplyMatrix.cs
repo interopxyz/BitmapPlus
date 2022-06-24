@@ -3,17 +3,20 @@ using Grasshopper.Kernel.Types;
 using Rhino.Geometry;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+
+using Fi = BitmapPlus.Filters.Convolutions;
 
 namespace BitmapPlus.Components.Filter
 {
-    public class GH_Bmp_RepeatFilters : GH_Bitmap_Base
+    public class GH_ApplyMatrix : GH_Bmp_Filter
     {
         /// <summary>
-        /// Initializes a new instance of the GH_Bmp_RepeatFilters class.
+        /// Initializes a new instance of the GH_ApplyMatrix class.
         /// </summary>
-        public GH_Bmp_RepeatFilters()
-          : base("Iterate Filter", "Iterate",
-              "Iteratively apply filters to a bitmap" + Properties.Resources.AccordCredit,
+        public GH_ApplyMatrix()
+          : base("Convolution Filter", "Convolution",
+              "Apply Convolution Matrix filter to an Image" + Properties.Resources.AccordCredit,
                 Constants.ShortName, "Filter")
         {
         }
@@ -23,7 +26,7 @@ namespace BitmapPlus.Components.Filter
         /// </summary>
         public override GH_Exposure Exposure
         {
-            get { return GH_Exposure.senary; }
+            get { return GH_Exposure.quinary; }
         }
 
         /// <summary>
@@ -31,9 +34,10 @@ namespace BitmapPlus.Components.Filter
         /// </summary>
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddGenericParameter("Image", "I", "An Image or Bitmap", GH_ParamAccess.item);
-            pManager.AddIntegerParameter("Loops", "L", "The number of iterative loops", GH_ParamAccess.item, 0);
-            pManager[1].Optional = true;
+            pManager.AddGenericParameter("Image / Bitmap", "I", "An Image or Bitmap", GH_ParamAccess.item);
+            pManager.AddMatrixParameter("Matrix", "M", "The Matrix to apply", GH_ParamAccess.item);
+            pManager.AddIntegerParameter("Divisor", "D", "Optional Divisor Value", GH_ParamAccess.item);
+            pManager[2].Optional = true;
         }
 
         /// <summary>
@@ -59,13 +63,24 @@ namespace BitmapPlus.Components.Filter
                 return;
             }
 
-            int iteration = 0;
-            DA.GetData(1, ref iteration);
-            if (iteration < 0) iteration = 0;
-            image.FilterIterations = iteration;
+            GH_Matrix ghMatrix = new GH_Matrix();
+            if (!DA.GetData(1, ref ghMatrix)) return;
+
+            int divisor = 9;
+            bool hasDivisor = DA.GetData(2, ref divisor);
+
+            if (hasDivisor)
+            {
+                image.Filters.Add(new Fi.Convolution(ghMatrix.Value,divisor));
+            }
+            else
+            {
+            image.Filters.Add(new Fi.Convolution(ghMatrix.Value));
+            }
 
             fileImage = new Img(image);
             DA.SetData(0, image);
+
         }
 
         /// <summary>
@@ -77,7 +92,7 @@ namespace BitmapPlus.Components.Filter
             {
                 //You can add image files to your project resources and access them like this:
                 // return Resources.IconForThisComponent;
-                return Properties.Resources.Bmp_Iterate;
+                return Properties.Resources.ConvolutionMatrix_01;
             }
         }
 
@@ -86,7 +101,7 @@ namespace BitmapPlus.Components.Filter
         /// </summary>
         public override Guid ComponentGuid
         {
-            get { return new Guid("9f443360-a224-4f0e-9375-c238a4ce5711"); }
+            get { return new Guid("4d77acfd-7f16-430d-ae68-50d750c32d00"); }
         }
     }
 }

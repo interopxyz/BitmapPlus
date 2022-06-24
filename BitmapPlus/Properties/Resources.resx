@@ -285,6 +285,9 @@ http://accord-framework.net/</value>
   <data name="Bmp_Xform_Shrink" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Bmp_Xform-Shrink.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="ConvolutionMatrix_01" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ConvolutionMatrix-01.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="DynamicImageCredit" xml:space="preserve">
     <value>
 Built on the Dynamic Image Library
