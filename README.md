@@ -1,4 +1,4 @@
-# BitmapPlus
+# Bitmap +
 A bitmap manipulation plugin for Grasshopper 3d
 
 ---
