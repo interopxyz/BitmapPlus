@@ -1,5 +1,5 @@
 # Bitmap +
-A bitmap manipulation plugin for Grasshopper 3d
+Bitmap creation & manipulation plugin for Grasshopper 3d
 
 ---
 
