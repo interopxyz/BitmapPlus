@@ -44,7 +44,7 @@ namespace BitmapPlus
                 image = new Img(bitmap);
                 return true;
             }
-            else if (File.Exists(filePath))
+            else if (!BitmapPlusEnvironment.FileIoBlocked && File.Exists(filePath))
             {
                 if(filePath.GetBitmapFromFile(out bitmap))
                 {
