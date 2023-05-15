@@ -1,6 +1,8 @@
 # Bitmap +
 Bitmap creation & manipulation plugin for Grasshopper 3d
 
+_Like Bitmap+ [Buy me a coffee :D](http://www.buymeacoffee.com/davidmans)_
+
 ---
 
 Bitmaps can be created pixel by pixel, imported, or generated and previewed live in the canvas. Both System Drawing Bitmaps and Bitmap Plus Image objects can then be used in a series of components. Procedural noise bitmaps can be generated using components built on the [Fastnoise algorithm](https://github.com/Auburn/FastNoiseLite).
