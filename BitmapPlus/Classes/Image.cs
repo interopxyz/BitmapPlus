@@ -8,9 +8,12 @@ using System.Threading.Tasks;
 
 using Af = Accord.Imaging.Filters;
 
+using Grasshopper.Kernel.Types;
+using GH_IO.Serialization;
+
 namespace BitmapPlus
 {
-    public class Img
+    public class Img : IGH_Goo
     {
         #region members
         public enum Channels { Alpha =0 , Red=1, Green=2, Blue=3, Hue=4, Saturation=5, Luminance=6 };
@@ -271,6 +274,122 @@ namespace BitmapPlus
         public override string ToString()
         {
             return "Image(w:"+this.Width+" h:"+this.Height+" r:"+this.Resolution+")";
+        }
+
+        #endregion
+
+        #region IGH_Goo
+
+        public bool IsValid { get { return this.IsValidWhyNot == string.Empty; } }
+
+        public string IsValidWhyNot
+        {
+            get
+            {
+                if (bitmap == null)
+                {
+                    return "Bitmap not set";
+                }
+                else if (bitmap.Height == 0 || bitmap.Width == 0)
+                {
+                    return "Bitmap height or width is 0";
+                }
+                else
+                {
+                    return string.Empty;
+                }
+            }
+        }
+
+        public string TypeName { get { return "Bitmap+ image"; } }
+
+        public string TypeDescription { get { return "Grasshopper type for Bitmap+ image"; } }
+
+        public IGH_Goo Duplicate()
+        {
+            return new Img(this);
+        }
+
+        public IGH_GooProxy EmitProxy()
+        {
+            return null;
+        }
+
+        public bool CastFrom(object source)
+        {
+            // Note: GH_Param<T>.Cast_Object(object data), which is used when adding data to a floating parameter, or
+            // when collecting data from sources, tries to use
+            //   target = InstantiateT();
+            //   target.CastFrom(data) ...
+            // before trying to use
+            //   data.CastTo<T>(out target)
+
+            if (source is Bitmap)
+            {
+                var img = new Img((Bitmap)source);
+                this.Layer = img.Layer;
+                this.Filters = img.Filters;
+                this.FilterIterations = img.FilterIterations;
+
+                return true;
+            }
+            else if (source is IGH_Goo)
+            {
+                if (((IGH_Goo)source).CastTo(out Bitmap bitmap))
+                {
+                    var img = new Img((Bitmap)source);
+                    this.Layer = img.Layer;
+                    this.Filters = img.Filters;
+                    this.FilterIterations = img.FilterIterations;
+
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public bool CastTo<T>(out T target)
+        {
+            bool success = false;
+
+            if (typeof(T).IsAssignableFrom(typeof(Bitmap)))
+            {
+                target = (T)((object)bitmap);
+                return true;
+            }
+            else if (typeof(T).IsAssignableFrom(typeof(Image)))
+            {
+                target = (T)((object)bitmap);
+                return true;
+            }
+
+            try
+            {
+                object o = bitmap;
+                target = (T)o;
+                success = true;
+            }
+            catch //(Exception e)
+            {
+                target = default(T);
+            }
+            return success;
+        }
+
+        public object ScriptVariable()
+        {
+            return this.bitmap;
+        }
+
+        public bool Write(GH_IWriter writer)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Read(GH_IReader reader)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion
