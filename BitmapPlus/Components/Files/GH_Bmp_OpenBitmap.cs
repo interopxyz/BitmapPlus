@@ -48,6 +48,12 @@ namespace BitmapPlus.Components
             bool load = false;
             if (!DA.GetData(1, ref load)) return;
 
+            if (BitmapPlusEnvironment.FileIoBlocked)
+            {
+                this.AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "Reading images from files is blocked on this computer.");
+                return;
+            }
+
             if (!File.Exists(P))
             {
                 this.AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "The file provided path does not exist. Please verify this is a valid file path.");

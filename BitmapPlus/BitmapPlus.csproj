@@ -257,6 +257,7 @@
     <Compile Include="Components\Visualize\GH_Bmp_PreviewImage.cs" />
     <Compile Include="Extensions\BmpExtensions.cs" />
     <Compile Include="Extensions\FilterExtensions.cs" />
+    <Compile Include="Utilities\BitmapPlusEnvironment.cs" />
     <Compile Include="Extensions\GhExtensions.cs" />
     <Compile Include="Extensions\LayerExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
