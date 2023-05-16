@@ -34,9 +34,9 @@ namespace BitmapPlus
             Bitmap bitmap = null;
             Img img = null;
 
-            if (goo.CastTo<Img>(out img))
+            if (goo.TypeName== "BmpPlus")
             {
-                image = new Img(img);
+                image = new Img((Img)goo);
                 return true;
             }
             else if(goo.CastTo<Bitmap>(out bitmap))
