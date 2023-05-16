@@ -301,7 +301,7 @@ namespace BitmapPlus
             }
         }
 
-        public string TypeName { get { return "Bitmap+ image"; } }
+        public string TypeName { get { return "BmpPlus"; } }
 
         public string TypeDescription { get { return "Grasshopper type for Bitmap+ image"; } }
 
