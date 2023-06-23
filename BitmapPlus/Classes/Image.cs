@@ -355,12 +355,12 @@ namespace BitmapPlus
 
             if (typeof(T).IsAssignableFrom(typeof(Bitmap)))
             {
-                target = (T)((object)bitmap);
+                target = (T)((object)this.GetFlatBitmap());
                 return true;
             }
             else if (typeof(T).IsAssignableFrom(typeof(Image)))
             {
-                target = (T)((object)bitmap);
+                target = (T)((object)this.GetFlatBitmap());
                 return true;
             }
 
