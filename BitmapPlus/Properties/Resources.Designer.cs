@@ -194,6 +194,16 @@ namespace BitmapPlus.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Bmp_Diffusion {
+            get {
+                object obj = ResourceManager.GetObject("Bmp_Diffusion", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Bmp_Dither {
             get {
                 object obj = ResourceManager.GetObject("Bmp_Dither", resourceCulture);
@@ -397,6 +407,16 @@ namespace BitmapPlus.Properties {
         internal static System.Drawing.Bitmap Bmp_Properties {
             get {
                 object obj = ResourceManager.GetObject("Bmp_Properties", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Bmp_ReactionDiffusion {
+            get {
+                object obj = ResourceManager.GetObject("Bmp_ReactionDiffusion", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
