@@ -213,6 +213,7 @@
     <Compile Include="Components\Create\GH_Bmp_CreateFractal.cs" />
     <Compile Include="Components\Create\GH_Bmp_CreateNoise.cs" />
     <Compile Include="Components\Create\GH_Bmp_ImageToBitmap.cs" />
+    <Compile Include="Components\Create\GH_Bmp_ReactionDiffusion.cs" />
     <Compile Include="Components\Edit\GH_Bmp_SwapChannels.cs" />
     <Compile Include="Components\Files\GH_Bmp_OpenBitmap.cs" />
     <Compile Include="Components\Files\GH_Bmp_SaveBitmap.cs" />
@@ -268,6 +269,7 @@
     </Compile>
     <Compile Include="Utilities\BitmapTracer.cs" />
     <Compile Include="Utilities\Constants.cs" />
+    <Compile Include="Utilities\Diffusion.cs" />
     <Compile Include="Utilities\FastNoiseBase.cs" />
     <Compile Include="Utilities\Noise.cs" />
   </ItemGroup>
@@ -442,6 +444,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ConvolutionMatrix-01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bmp_Diffusion.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bmp_ReactionDiffusion.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

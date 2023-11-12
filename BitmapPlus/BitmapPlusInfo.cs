@@ -59,7 +59,7 @@ namespace BitmapPlus
         {
             get
             {
-                return "1.6.2.0";
+                return "1.6.3.0";
             }
         }
     }
